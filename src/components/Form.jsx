@@ -89,14 +89,21 @@ function GeneralInfo({ onFormSubmit }) {
 
 function About({ onFormSubmit }) {
   const [about, setAbout] = useState("");
+
   const handleSubmit = (e) => {
     e.preventDefault();
     onFormSubmit((prevData) => ({ ...prevData, about }));
   };
+
+  const toggleFormVisibility = () => {
+    const formEle = document.querySelector(".about-form");
+    formEle.classList.toggle("about-form-show");
+  };
+
   return (
     <div className="about-container">
       <h1>About</h1>
-      <button>Edit</button>
+      <button onClick={toggleFormVisibility}>Edit</button>
       <form action="" className="about-form" onSubmit={handleSubmit}>
         <textarea
           id="about"

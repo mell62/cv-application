@@ -66,3 +66,22 @@ h3 {
   height: 1123px;
   transform-origin: 0% 0%;
 }
+
+.about-form {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s, transform 0.5s;
+  transform: translateY(-1rem);
+}
+
+.about-form-show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(1rem);
+}
+
+@starting-style {
+  .about-form-show {
+    opacity: 0;
+  }
+}
