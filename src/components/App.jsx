@@ -5,7 +5,12 @@ import Form from "./Form";
 import CV from "./CV";
 
 function App() {
-  const [userData, setUserData] = useState({ fullName: "" });
+  const [userData, setUserData] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    linkedin: "",
+  });
 
   const handleSubmit = (data) => {
     setUserData(data);
