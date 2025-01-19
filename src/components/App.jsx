@@ -10,6 +10,7 @@ function App() {
     email: "",
     phone: "",
     linkedin: "",
+    github: "",
   });
 
   const handleSubmit = (data) => {
@@ -17,10 +18,14 @@ function App() {
   };
 
   return (
-    <>
-      <Form onFormSubmit={handleSubmit} />
-      <CV data={userData} />
-    </>
+    <div id="content">
+      <section className="form-section">
+        <Form onFormSubmit={handleSubmit} />
+      </section>
+      <section className="cv-section">
+        <CV data={userData} />
+      </section>
+    </div>
   );
 }
 
