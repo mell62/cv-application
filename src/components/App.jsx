@@ -11,6 +11,7 @@ function App() {
     phone: "",
     linkedin: "",
     github: "",
+    about: "",
   });
 
   const handleSubmit = (data) => {
