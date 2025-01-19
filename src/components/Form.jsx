@@ -7,6 +7,7 @@ export default function Form({ onFormSubmit }) {
     <>
       <GeneralInfo onFormSubmit={onFormSubmit} />
       <About onFormSubmit={onFormSubmit} />
+      <Education onFormSubmit={onFormSubmit} />
     </>
   );
 }
@@ -97,7 +98,7 @@ function About({ onFormSubmit }) {
 
   const toggleFormVisibility = () => {
     const formEle = document.querySelector(".about-form");
-    formEle.classList.toggle("about-form-show");
+    formEle.classList.toggle("form-show");
   };
 
   return (
@@ -106,11 +107,94 @@ function About({ onFormSubmit }) {
         <h1>About</h1>
         <button onClick={toggleFormVisibility}>Edit</button>
       </div>
-      <form action="" className="about-form" onSubmit={handleSubmit}>
+      <form action="" className="about-form form-hide" onSubmit={handleSubmit}>
         <textarea
           id="about"
           onChange={(e) => setAbout(e.target.value)}
         ></textarea>
+        <button type="submit">Save</button>
+      </form>
+    </>
+  );
+}
+
+function Education({ onFormSubmit }) {
+  const [education, setEducation] = useState({
+    school: "",
+    degree: "",
+    startDate: "",
+    endDate: "",
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onFormSubmit((prevData) => ({ ...prevData, education }));
+  };
+
+  const toggleFormVisibility = () => {
+    const formEle = document.querySelector(".education-form");
+    formEle.classList.toggle("form-show");
+  };
+
+  return (
+    <>
+      <div className="education-form-header">
+        <h1>Education</h1>
+        <button onClick={toggleFormVisibility}>Edit</button>
+      </div>
+      <form
+        action=""
+        className="education-form form-hide"
+        onSubmit={handleSubmit}
+      >
+        <div className="school-container">
+          <label htmlFor="school">School</label>
+          <div className="school-input-container">
+            <input
+              type="text"
+              id="school"
+              onChange={(e) =>
+                setEducation({ ...education, school: e.target.value })
+              }
+            />
+          </div>
+        </div>
+        <div className="degree-container">
+          <label htmlFor="degree">Degree</label>
+          <div className="degree-input-container">
+            <input
+              type="text"
+              id="degree"
+              onChange={(e) =>
+                setEducation({ ...education, degree: e.target.value })
+              }
+            />
+          </div>
+        </div>
+        <div className="start-date-container">
+          <label htmlFor="start-date">Start Date</label>
+          <div className="start-date-input-container">
+            <input
+              type="text"
+              id="start-date"
+              onChange={(e) =>
+                setEducation({ ...education, startDate: e.target.value })
+              }
+            />
+          </div>
+        </div>
+        <div className="end-date-container">
+          <label htmlFor="end-date">End Date</label>
+          <div className="end-date-input-container">
+            <input
+              type="text"
+              id="end-date"
+              onChange={(e) =>
+                setEducation({ ...education, endDate: e.target.value })
+              }
+            />
+          </div>
+        </div>
         <button type="submit">Save</button>
       </form>
     </>

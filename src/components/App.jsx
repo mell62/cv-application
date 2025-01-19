@@ -12,6 +12,7 @@ function App() {
     linkedin: "",
     github: "",
     about: "",
+    education: {},
   });
 
   const handleSubmit = (data) => {

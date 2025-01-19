@@ -36,14 +36,14 @@ h3 {
   justify-content: space-between;
 }
 
-.about-form {
+.form-hide {
   opacity: 0;
   visibility: hidden;
   transition: opacity 1s, transform 0.5s;
   transform: translateY(-2rem);
 }
 
-.about-form-show {
+.form-show {
   opacity: 1;
   visibility: visible;
   transform: translateY(0rem);

@@ -5,7 +5,10 @@ export default function CV({ data }) {
   return (
     <div className="cv-sheet">
       <GeneralInfo data={data} />
-      <About data={data} />
+      <div className="main-info-cv">
+        <About data={data} />
+        <Education data={data} />
+      </div>
     </div>
   );
 }
@@ -30,10 +33,22 @@ function GeneralInfo({ data }) {
 
 function About({ data }) {
   return (
-    <div className="main-info-cv">
-      <div className="about-cv">
-        <h1 className="about-header">About</h1>
-        {data.about}
+    <div className="about-cv">
+      <h1 className="about-header">About</h1>
+      {data.about}
+    </div>
+  );
+}
+
+function Education({ data }) {
+  return (
+    <div className="education-cv">
+      <h1 className="education-header">Education</h1>
+      <div className="education-info-cv">
+        <div className="school-name-cv">{data.education.school}</div>
+        <div className="degree-cv">{data.education.degree}</div>
+        <div className="start-date-cv">{data.education.startDate}</div>
+        <div className="end-date-cv">{data.education.endDate}</div>
       </div>
     </div>
   );
