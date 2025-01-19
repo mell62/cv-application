@@ -40,13 +40,13 @@ h3 {
   opacity: 0;
   visibility: hidden;
   transition: opacity 1s, transform 0.5s;
-  transform: translateY(-1rem);
+  transform: translateY(-2rem);
 }
 
 .about-form-show {
   opacity: 1;
   visibility: visible;
-  transform: translateY(1rem);
+  transform: translateY(0rem);
 }
 
 .general-form,
