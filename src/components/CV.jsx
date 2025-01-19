@@ -17,9 +17,11 @@ export default function CV({ data }) {
           </div>
         </div>
       </div>
-      <div className="about-cv">
-        <h1 className="about-header">About</h1>
-        {data.about}
+      <div className="main-info-cv">
+        <div className="about-cv">
+          <h1 className="about-header">About</h1>
+          {data.about}
+        </div>
       </div>
     </div>
   );

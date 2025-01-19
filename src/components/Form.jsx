@@ -101,9 +101,11 @@ function About({ onFormSubmit }) {
   };
 
   return (
-    <div className="about-container">
-      <h1>About</h1>
-      <button onClick={toggleFormVisibility}>Edit</button>
+    <>
+      <div className="about-form-header">
+        <h1>About</h1>
+        <button onClick={toggleFormVisibility}>Edit</button>
+      </div>
       <form action="" className="about-form" onSubmit={handleSubmit}>
         <textarea
           id="about"
@@ -111,6 +113,6 @@ function About({ onFormSubmit }) {
         ></textarea>
         <button type="submit">Save</button>
       </form>
-    </div>
+    </>
   );
 }

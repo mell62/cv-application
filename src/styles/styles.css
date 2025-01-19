@@ -25,15 +25,47 @@ h3 {
   padding: 2rem;
 }
 
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.about-form-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.about-form {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s, transform 0.5s;
+  transform: translateY(-1rem);
+}
+
+.about-form-show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(1rem);
+}
+
+.general-form,
+.about-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
 .cv-section {
   display: flex;
   align-items: start;
 }
 
-.general-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+.cv-sheet {
+  background-color: white;
+  width: 794px;
+  height: 1123px;
+  transform-origin: 0% 0%;
 }
 
 .general-info-cv {
@@ -60,28 +92,6 @@ h3 {
   justify-content: space-evenly;
 }
 
-.cv-sheet {
-  background-color: white;
-  width: 794px;
-  height: 1123px;
-  transform-origin: 0% 0%;
-}
-
-.about-form {
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 1s, transform 0.5s;
-  transform: translateY(-1rem);
-}
-
-.about-form-show {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(1rem);
-}
-
-@starting-style {
-  .about-form-show {
-    opacity: 0;
-  }
+.main-info-cv {
+  padding: 2rem;
 }
