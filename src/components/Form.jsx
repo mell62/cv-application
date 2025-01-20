@@ -13,6 +13,7 @@ export default function Form({ onFormSubmit }) {
       <GeneralInfo onFormSubmit={onFormSubmit} />
       <About onFormSubmit={onFormSubmit} />
       <Education onFormSubmit={onFormSubmit} />
+      <Experience onFormSubmit={onFormSubmit} />
     </>
   );
 }
@@ -209,6 +210,63 @@ function Education({ onFormSubmit }) {
         </div>
         <button type="submit">Save</button>
       </form>
+    </div>
+  );
+}
+
+function Experience({ onFormSubmit }) {
+  const [experience, setExperience] = useState([
+    {
+      id: 1,
+      company: "",
+      position: "",
+      responsibilities: [],
+      startDate: "",
+      endDate: "",
+    },
+  ]);
+  const [editFlag, setEditFlag] = useState(false);
+
+  const addExperienceInput = () => {
+    setExperience((prevExperience) => [
+      ...prevExperience,
+      { id: prevExperience.length + 1, value: "" },
+    ]);
+  };
+
+  const updateExperience = (id, newExperience) => {
+    setExperience((prevExperience) =>
+      prevExperience.map((item) =>
+        item.id === id ? { ...item, value: newExperience } : item
+      )
+    );
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onFormSubmit((prevData) => ({ ...prevData, experience }));
+  };
+
+  return (
+    <div className="experience-form-container">
+      <div className="experience-form-header">
+        <h1>Professional Experience</h1>
+        <button onClick={() => setEditFlag(!editFlag)}>Edit</button>
+      </div>
+      {editFlag
+        ? experience.map((item) => (
+            <>
+              <div key={item.id} className="company-name">
+                {item.company}
+              </div>
+              {item.company ? (
+                <button key={item.id} className="experience-edit-btn">
+                  Edit
+                </button>
+              ) : null}
+            </>
+          ))
+        : null}
     </div>
   );
 }
