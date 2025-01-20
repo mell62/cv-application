@@ -124,6 +124,7 @@ function Education({ onFormSubmit }) {
     degree: "",
     startDate: "",
     endDate: "",
+    isPresentEducation: false,
   });
 
   const handleSubmit = (e) => {
@@ -175,7 +176,7 @@ function Education({ onFormSubmit }) {
           <label htmlFor="start-date">Start Date</label>
           <div className="start-date-input-container">
             <input
-              type="text"
+              type="date"
               id="start-date"
               onChange={(e) =>
                 setEducation({ ...education, startDate: e.target.value })
@@ -187,12 +188,23 @@ function Education({ onFormSubmit }) {
           <label htmlFor="end-date">End Date</label>
           <div className="end-date-input-container">
             <input
-              type="text"
+              type="date"
               id="end-date"
               onChange={(e) =>
                 setEducation({ ...education, endDate: e.target.value })
               }
             />
+            <input
+              type="checkbox"
+              id="present-education"
+              onClick={() =>
+                setEducation({
+                  ...education,
+                  isPresentEducation: !education.isPresentEducation,
+                })
+              }
+            />
+            <label htmlFor="present-education">Current</label>
           </div>
         </div>
         <button type="submit">Save</button>
