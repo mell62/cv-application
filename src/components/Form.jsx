@@ -178,6 +178,7 @@ function Education({ onFormSubmit }) {
             <input
               type="date"
               id="start-date"
+              max={new Date().toISOString().split("T")[0]}
               onChange={(e) =>
                 setEducation({ ...education, startDate: e.target.value })
               }
@@ -190,6 +191,7 @@ function Education({ onFormSubmit }) {
             <input
               type="date"
               id="end-date"
+              max={new Date().toISOString().split("T")[0]}
               onChange={(e) =>
                 setEducation({ ...education, endDate: e.target.value })
               }
