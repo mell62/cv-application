@@ -2,6 +2,11 @@ import { useState } from "react";
 import "../styles/styles.css";
 import "../styles/modern-normalize.css";
 
+const toggleFormVisibility = (className) => {
+  const formEle = document.querySelector(className);
+  formEle.classList.toggle("form-show");
+};
+
 export default function Form({ onFormSubmit }) {
   return (
     <>
@@ -96,16 +101,13 @@ function About({ onFormSubmit }) {
     onFormSubmit((prevData) => ({ ...prevData, about }));
   };
 
-  const toggleFormVisibility = () => {
-    const formEle = document.querySelector(".about-form");
-    formEle.classList.toggle("form-show");
-  };
-
   return (
     <div className="about-form-container">
       <div className="about-form-header">
         <h1>About</h1>
-        <button onClick={toggleFormVisibility}>Edit</button>
+        <button onClick={() => toggleFormVisibility(".about-form")}>
+          Edit
+        </button>
       </div>
       <form action="" className="about-form form-hide" onSubmit={handleSubmit}>
         <textarea
@@ -131,17 +133,13 @@ function Education({ onFormSubmit }) {
     e.preventDefault();
     onFormSubmit((prevData) => ({ ...prevData, education }));
   };
-
-  const toggleFormVisibility = () => {
-    const formEle = document.querySelector(".education-form");
-    formEle.classList.toggle("form-show");
-  };
-
   return (
     <div className="education-form-container">
       <div className="education-form-header">
         <h1>Education</h1>
-        <button onClick={toggleFormVisibility}>Edit</button>
+        <button onClick={() => toggleFormVisibility(".education-form")}>
+          Edit
+        </button>
       </div>
       <form
         action=""
