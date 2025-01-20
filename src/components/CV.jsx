@@ -45,10 +45,14 @@ function Education({ data }) {
     <div className="education-cv">
       <h1 className="education-header">Education</h1>
       <div className="education-info-cv">
-        <div className="school-name-cv">{data.education.school}</div>
-        <div className="degree-cv">{data.education.degree}</div>
-        <div className="start-date-cv">{data.education.startDate}</div>
-        <div className="end-date-cv">{data.education.endDate}</div>
+        <div className="education-main-info-cv">
+          <div className="school-name-cv">{data.education.school}</div>
+          <div className="degree-cv">{data.education.degree}</div>
+        </div>
+        <div className="education-timeline-info-cv">
+          <div className="start-date-cv">{data.education.startDate}</div>
+          <div className="end-date-cv">{data.education.endDate}</div>
+        </div>
       </div>
     </div>
   );
