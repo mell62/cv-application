@@ -102,7 +102,7 @@ function About({ onFormSubmit }) {
   };
 
   return (
-    <>
+    <div className="about-form-container">
       <div className="about-form-header">
         <h1>About</h1>
         <button onClick={toggleFormVisibility}>Edit</button>
@@ -114,7 +114,7 @@ function About({ onFormSubmit }) {
         ></textarea>
         <button type="submit">Save</button>
       </form>
-    </>
+    </div>
   );
 }
 
@@ -137,7 +137,7 @@ function Education({ onFormSubmit }) {
   };
 
   return (
-    <>
+    <div className="education-form-container">
       <div className="education-form-header">
         <h1>Education</h1>
         <button onClick={toggleFormVisibility}>Edit</button>
@@ -197,6 +197,6 @@ function Education({ onFormSubmit }) {
         </div>
         <button type="submit">Save</button>
       </form>
-    </>
+    </div>
   );
 }

@@ -31,7 +31,15 @@ h3 {
   gap: 2rem;
 }
 
-.about-form-header {
+.about-form-container,
+.education-form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.about-form-header,
+.education-form-header {
   display: flex;
   justify-content: space-between;
 }
@@ -41,12 +49,14 @@ h3 {
   visibility: hidden;
   transition: opacity 1s, transform 0.5s;
   transform: translateY(-2rem);
+  max-height: 0;
 }
 
 .form-show {
   opacity: 1;
   visibility: visible;
   transform: translateY(0rem);
+  max-height: max-content;
 }
 
 .general-form,
