@@ -248,11 +248,6 @@ function Experience({ onFormSubmit }) {
     setExperienceStore((prevExperience) => [...prevExperience, newExperience]);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onFormSubmit((prevData) => ({ ...prevData, experience }));
-  };
-
   return (
     <div className="experience-form-container">
       <div className="experience-form-header">
@@ -267,7 +262,12 @@ function Experience({ onFormSubmit }) {
                 action=""
                 key={item.id}
                 className="experience-form"
-                onSubmit={handleSubmit}
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  onFormSubmit((prevData) => ({ ...prevData, experience }));
+                  item.editing = false;
+                  setIndividualEditFlag(false);
+                }}
               >
                 <label htmlFor="company-name-input">Company Name</label>
                 <input
@@ -278,14 +278,7 @@ function Experience({ onFormSubmit }) {
                     updateExperience(item.id, "company", e.target.value)
                   }
                 />
-                <button
-                  onClick={() => {
-                    item.editing = false;
-                    setIndividualEditFlag(false);
-                  }}
-                >
-                  Save
-                </button>
+                <button type="submit">Save</button>
               </form>
             ))
         : editFlag
@@ -293,7 +286,15 @@ function Experience({ onFormSubmit }) {
             <Fragment key={item.id}>
               <div className="company-name">{item.company}</div>
               {item.company ? (
-                <button className="experience-edit-btn">Edit</button>
+                <button
+                  className="experience-edit-btn"
+                  onClick={() => {
+                    item.editing = true;
+                    setIndividualEditFlag(true);
+                  }}
+                >
+                  Edit
+                </button>
               ) : null}
             </Fragment>
           ))
