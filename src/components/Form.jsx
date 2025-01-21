@@ -218,7 +218,6 @@ function Experience({ onFormSubmit }) {
   const [experience, setExperience] = useState([]);
   const [editFlag, setEditFlag] = useState(false);
   const [individualEditFlag, setIndividualEditFlag] = useState(false);
-  const [experienceStore, setExperienceStore] = useState([]);
 
   const addExperienceInput = () => {
     setExperience((prevExperience) => [
@@ -228,7 +227,7 @@ function Experience({ onFormSubmit }) {
         editing: true,
         company: "",
         position: "",
-        responsibilities: [],
+        responsibilities: "",
         startDate: "",
         endDate: "",
       },
@@ -242,10 +241,6 @@ function Experience({ onFormSubmit }) {
         item.id === id ? { ...item, [field]: newExperience } : item
       )
     );
-  };
-
-  const storeExperience = (newExperience) => {
-    setExperienceStore((prevExperience) => [...prevExperience, newExperience]);
   };
 
   return (
@@ -270,14 +265,67 @@ function Experience({ onFormSubmit }) {
                 }}
               >
                 <label htmlFor="company-name-input">Company Name</label>
-                <input
-                  type="text"
-                  id="company-name-input"
-                  value={item.company}
-                  onChange={(e) =>
-                    updateExperience(item.id, "company", e.target.value)
-                  }
-                />
+                <div className="company-name-input-container">
+                  <input
+                    type="text"
+                    id="company-name-input"
+                    value={item.company}
+                    onChange={(e) =>
+                      updateExperience(item.id, "company", e.target.value)
+                    }
+                  />
+                </div>
+                <label htmlFor="company-position-input">Position</label>
+                <div className="company-position-input-container">
+                  <input
+                    type="text"
+                    id="company-position-input"
+                    value={item.position}
+                    onChange={(e) =>
+                      updateExperience(item.id, "position", e.target.value)
+                    }
+                  />
+                </div>
+                <label htmlFor="company-responsibilities-input">
+                  Responsibilities
+                </label>
+                <div className="company-responsibilities-input-container">
+                  <textarea
+                    id="company-responsibilities-input"
+                    value={item.responsibilities}
+                    onChange={(e) =>
+                      updateExperience(
+                        item.id,
+                        "responsibilities",
+                        e.target.value
+                      )
+                    }
+                  />
+                </div>
+                <label htmlFor="company-start-date-input">Start Date</label>
+                <div className="company-start-date-input-container">
+                  <input
+                    type="date"
+                    id="company-start-date-input"
+                    max={new Date().toISOString().split("T")[0]}
+                    value={item.startDate}
+                    onChange={(e) =>
+                      updateExperience(item.id, "startDate", e.target.value)
+                    }
+                  />
+                </div>
+                <label htmlFor="company-end-date-input">End Date</label>
+                <div className="company-end-date-input-container">
+                  <input
+                    type="date"
+                    id="company-end-date-input"
+                    max={new Date().toISOString().split("T")[0]}
+                    value={item.endDate}
+                    onChange={(e) =>
+                      updateExperience(item.id, "endDate", e.target.value)
+                    }
+                  />
+                </div>
                 <button type="submit">Save</button>
               </form>
             ))
