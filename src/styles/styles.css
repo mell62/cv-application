@@ -110,13 +110,15 @@ h3 {
 }
 
 .about-cv,
-.education-cv {
+.education-cv,
+.experience-cv {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.education-info-cv {
+.education-info-cv,
+.experience-container-cv {
   display: flex;
   gap: 4rem;
 }

@@ -71,13 +71,17 @@ function Experience({ data }) {
         {data.experience.length > 0
           ? data.experience.map((exp) => (
               <div key={exp.id} className="experience-container-cv">
-                <div className="company-name-cv">{exp.company}</div>
-                <div className="company-position-cv">{exp.position}</div>
-                <div className="responsibilities-cv">
-                  {exp.responsibilities}
+                <div className="experience-main-info-cv">
+                  <div className="company-name-cv">{exp.company}</div>
+                  <div className="company-position-cv">{exp.position}</div>
+                  <div className="responsibilities-cv">
+                    {exp.responsibilities}
+                  </div>
                 </div>
-                <div className="start-date-cv">{exp.startDate}</div>
-                <div className="end-date-cv">{exp.endDate}</div>
+                <div className="experience-timeline-info-cv">
+                  <div className="start-date-cv">{exp.startDate}</div>
+                  <div className="end-date-cv">{exp.endDate}</div>
+                </div>
               </div>
             ))
           : null}
