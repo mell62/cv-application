@@ -13,6 +13,7 @@ function App() {
     github: "",
     about: "",
     education: {},
+    experience: [],
   });
 
   const handleSubmit = (data) => {

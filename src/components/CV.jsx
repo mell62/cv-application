@@ -8,6 +8,7 @@ export default function CV({ data }) {
       <div className="main-info-cv">
         <About data={data} />
         <Education data={data} />
+        <Experience data={data} />
       </div>
     </div>
   );
@@ -57,6 +58,23 @@ function Education({ data }) {
               : data.education.endDate}
           </div>
         </div>
+      </div>
+    </div>
+  );
+}
+
+function Experience({ data }) {
+  return (
+    <div className="experience-cv">
+      <h1 className="experience-header">Experience</h1>
+      <div className="experience-info-cv">
+        {data.experience.length > 0
+          ? data.experience.map((exp) => (
+              <div key={exp.id} className="company-name-cv">
+                {exp.company}
+              </div>
+            ))
+          : null}
       </div>
     </div>
   );
