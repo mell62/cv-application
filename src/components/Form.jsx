@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import "../styles/styles.css";
 import "../styles/modern-normalize.css";
 
@@ -215,31 +215,37 @@ function Education({ onFormSubmit }) {
 }
 
 function Experience({ onFormSubmit }) {
-  const [experience, setExperience] = useState([
-    {
-      id: 1,
-      company: "",
-      position: "",
-      responsibilities: [],
-      startDate: "",
-      endDate: "",
-    },
-  ]);
+  const [experience, setExperience] = useState([]);
   const [editFlag, setEditFlag] = useState(false);
+  const [individualEditFlag, setIndividualEditFlag] = useState(false);
+  const [experienceStore, setExperienceStore] = useState([]);
 
   const addExperienceInput = () => {
     setExperience((prevExperience) => [
       ...prevExperience,
-      { id: prevExperience.length + 1, value: "" },
+      {
+        id: prevExperience.length + 1,
+        editing: true,
+        company: "",
+        position: "",
+        responsibilities: [],
+        startDate: "",
+        endDate: "",
+      },
     ]);
+    setIndividualEditFlag(true);
   };
 
-  const updateExperience = (id, newExperience) => {
+  const updateExperience = (id, field, newExperience) => {
     setExperience((prevExperience) =>
       prevExperience.map((item) =>
-        item.id === id ? { ...item, value: newExperience } : item
+        item.id === id ? { ...item, [field]: newExperience } : item
       )
     );
+  };
+
+  const storeExperience = (newExperience) => {
+    setExperienceStore((prevExperience) => [...prevExperience, newExperience]);
   };
 
   const handleSubmit = (e) => {
@@ -253,20 +259,48 @@ function Experience({ onFormSubmit }) {
         <h1>Professional Experience</h1>
         <button onClick={() => setEditFlag(!editFlag)}>Edit</button>
       </div>
-      {editFlag
-        ? experience.map((item) => (
-            <>
-              <div key={item.id} className="company-name">
-                {item.company}
-              </div>
-              {item.company ? (
-                <button key={item.id} className="experience-edit-btn">
-                  Edit
+      {individualEditFlag
+        ? experience
+            .filter((item) => item.editing === true)
+            .map((item) => (
+              <form
+                action=""
+                key={item.id}
+                className="experience-form"
+                onSubmit={handleSubmit}
+              >
+                <label htmlFor="company-name-input">Company Name</label>
+                <input
+                  type="text"
+                  id="company-name-input"
+                  value={item.company}
+                  onChange={(e) =>
+                    updateExperience(item.id, "company", e.target.value)
+                  }
+                />
+                <button
+                  onClick={() => {
+                    item.editing = false;
+                    setIndividualEditFlag(false);
+                  }}
+                >
+                  Save
                 </button>
+              </form>
+            ))
+        : editFlag
+        ? experience.map((item) => (
+            <Fragment key={item.id}>
+              <div className="company-name">{item.company}</div>
+              {item.company ? (
+                <button className="experience-edit-btn">Edit</button>
               ) : null}
-            </>
+            </Fragment>
           ))
         : null}
+      {individualEditFlag ? null : editFlag ? (
+        <button onClick={addExperienceInput}>Add Experience</button>
+      ) : null}
     </div>
   );
 }
