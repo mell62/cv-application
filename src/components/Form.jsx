@@ -243,6 +243,25 @@ function Experience({ onFormSubmit }) {
     );
   };
 
+  const clearExperience = (id) => {
+    setExperience((prevExperience) =>
+      prevExperience.map((exp) => {
+        if (exp.id === id) {
+          return {
+            ...exp,
+            editing: true,
+            company: "",
+            position: "",
+            responsibilities: "",
+            startDate: "",
+            endDate: "",
+          };
+        }
+        return exp;
+      })
+    );
+  };
+
   return (
     <div className="experience-form-container">
       <div className="experience-form-header">
@@ -326,6 +345,13 @@ function Experience({ onFormSubmit }) {
                     }
                   />
                 </div>
+                <button
+                  type="button"
+                  className="del-btn"
+                  onClick={() => clearExperience(item.id)}
+                >
+                  Clear
+                </button>
                 <button type="submit">Save</button>
               </form>
             ))
