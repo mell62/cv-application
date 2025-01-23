@@ -20,10 +20,22 @@ function App() {
     setUserData(data);
   };
 
+  const deleteExperience = (id) => {
+    setUserData((prevData) => ({
+      ...prevData,
+      experience: prevData.experience
+        .filter((exp) => exp.id !== id)
+        .map((exp, index) => ({
+          ...exp,
+          id: index + 1,
+        })),
+    }));
+  };
+
   return (
     <div id="content">
       <section className="form-section">
-        <Form onFormSubmit={handleSubmit} />
+        <Form onFormSubmit={handleSubmit} deleteExp={deleteExperience} />
       </section>
       <section className="cv-section">
         <CV data={userData} />

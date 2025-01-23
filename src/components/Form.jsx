@@ -7,13 +7,13 @@ const toggleFormVisibility = (className) => {
   formEle.classList.toggle("form-show");
 };
 
-export default function Form({ onFormSubmit }) {
+export default function Form({ onFormSubmit, deleteExp }) {
   return (
     <>
       <GeneralInfo onFormSubmit={onFormSubmit} />
       <About onFormSubmit={onFormSubmit} />
       <Education onFormSubmit={onFormSubmit} />
-      <Experience onFormSubmit={onFormSubmit} />
+      <Experience onFormSubmit={onFormSubmit} deleteExp={deleteExp} />
     </>
   );
 }
@@ -214,7 +214,7 @@ function Education({ onFormSubmit }) {
   );
 }
 
-function Experience({ onFormSubmit }) {
+function Experience({ onFormSubmit, deleteExp }) {
   const [experience, setExperience] = useState([]);
   const [editFlag, setEditFlag] = useState(false);
 
@@ -245,23 +245,17 @@ function Experience({ onFormSubmit }) {
     );
   };
 
-  const clearExperience = (id) => {
-    setExperience((prevExperience) =>
-      prevExperience.map((exp) => {
-        if (exp.id === id) {
-          return {
-            ...exp,
-            editing: true,
-            company: "",
-            position: "",
-            responsibilities: "",
-            startDate: "",
-            endDate: "",
-          };
-        }
-        return exp;
-      })
+  const deleteExperience = (id) => {
+    setExperience((prevExp) =>
+      prevExp
+        .filter((exp) => exp.id !== id)
+        .map((exp, index) => ({
+          ...exp,
+          id: index + 1,
+        }))
     );
+    deleteExp(id);
+    setEditFlag("overview");
   };
 
   return (
@@ -353,12 +347,8 @@ function Experience({ onFormSubmit }) {
                     }
                   />
                 </div>
-                <button
-                  type="button"
-                  className="del-btn"
-                  onClick={() => clearExperience(item.id)}
-                >
-                  Clear
+                <button type="button" onClick={() => deleteExperience(item.id)}>
+                  Delete
                 </button>
                 <button type="submit">Save</button>
               </form>
