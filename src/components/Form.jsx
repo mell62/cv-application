@@ -7,13 +7,14 @@ const toggleFormVisibility = (className) => {
   formEle.classList.toggle("form-show");
 };
 
-export default function Form({ onFormSubmit, deleteExp }) {
+export default function Form({ onFormSubmit, deleteData }) {
   return (
     <>
       <GeneralInfo onFormSubmit={onFormSubmit} />
       <About onFormSubmit={onFormSubmit} />
       <Education onFormSubmit={onFormSubmit} />
-      <Experience onFormSubmit={onFormSubmit} deleteExp={deleteExp} />
+      <Experience onFormSubmit={onFormSubmit} deleteExp={deleteData} />
+      <Project onFormSubmit={onFormSubmit} deleteProj={deleteData} />
     </>
   );
 }
@@ -377,6 +378,127 @@ function Experience({ onFormSubmit, deleteExp }) {
       {individualEdit ? null : overviewEdit ? (
         <button onClick={addExperienceInput}>Add Experience</button>
       ) : null}
+    </div>
+  );
+}
+
+function Project({ onFormSubmit, deleteProj }) {
+  const [project, setProject] = useState([]);
+  const [editFlag, setEditFlag] = useState(false);
+
+  const overviewEdit = editFlag === "overview";
+  const individualEdit = editFlag === "individual";
+
+  const addProject = () => {
+    setProject((prevProject) => [
+      ...prevProject,
+      {
+        id: prevProject.length + 1,
+        editing: true,
+        projectName: "",
+        projectSummary: "",
+      },
+    ]);
+    setEditFlag("individual");
+  };
+
+  const updateProject = (id, field, newProject) => {
+    setProject((prevProject) =>
+      prevProject.map((proj) =>
+        proj.id === id ? { ...proj, [field]: newProject } : proj
+      )
+    );
+  };
+
+  const deleteProject = (attribute, id) => {
+    setProject((prevProject) =>
+      prevProject
+        .filter((proj) => proj.id !== id)
+        .map((proj, index) => ({
+          ...proj,
+          id: index + 1,
+        }))
+    );
+    deleteProj(attribute, id);
+    setEditFlag("overview");
+  };
+
+  return (
+    <div className="project-form-container">
+      <div className="project-form-header">
+        <h1>Projects</h1>
+        <button
+          onClick={() =>
+            editFlag ? setEditFlag(false) : setEditFlag("overview")
+          }
+        >
+          Edit
+        </button>
+      </div>
+      {individualEdit
+        ? project
+            .filter((proj) => proj.editing === true)
+            .map((proj) => (
+              <form
+                key={proj.id}
+                action=""
+                className="project-form"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  onFormSubmit((prevData) => ({ ...prevData, project }));
+                  proj.editing = false;
+                  setEditFlag("overview");
+                }}
+              >
+                <label htmlFor="project-name-input">Name</label>
+                <div className="project-name-input-container">
+                  <input
+                    type="text"
+                    id="project-name-input"
+                    value={proj.projectName}
+                    onChange={(e) =>
+                      updateProject(proj.id, "projectName", e.target.value)
+                    }
+                  />
+                </div>
+                <label htmlFor="project-summary-input">Summary</label>
+                <div className="project-summary-input-container">
+                  <input
+                    type="text"
+                    id="project-summary-input"
+                    value={proj.projectSummary}
+                    onChange={(e) =>
+                      updateProject(proj.id, "projectSummary", e.target.value)
+                    }
+                  />
+                </div>
+                <button
+                  type="button"
+                  onClick={() => deleteProject("project", proj.id)}
+                >
+                  Delete
+                </button>
+                <button type="submit">Save</button>
+              </form>
+            ))
+        : overviewEdit
+        ? project.map((proj) => (
+            <Fragment key={proj.id}>
+              <div className="project-name">{proj.projectName}</div>
+              {proj.projectName ? (
+                <button
+                  onClick={() => {
+                    setEditFlag("individual");
+                    proj.editing = true;
+                  }}
+                >
+                  Edit
+                </button>
+              ) : null}
+            </Fragment>
+          ))
+        : null}
+      {overviewEdit ? <button onClick={addProject}>Add Project</button> : null}
     </div>
   );
 }

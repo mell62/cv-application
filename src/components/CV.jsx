@@ -9,6 +9,7 @@ export default function CV({ data }) {
         <About data={data} />
         <Education data={data} />
         <Experience data={data} />
+        <Project data={data} />
       </div>
     </div>
   );
@@ -81,6 +82,28 @@ function Experience({ data }) {
                 <div className="experience-timeline-info-cv">
                   <div className="start-date-cv">{exp.startDate}</div>
                   <div className="end-date-cv">{exp.endDate}</div>
+                </div>
+              </div>
+            ))
+          : null}
+      </div>
+    </div>
+  );
+}
+
+function Project({ data }) {
+  return (
+    <div className="project-cv">
+      <h1 className="project-header">Project</h1>
+      <div className="project-info-cv">
+        {data.project.length > 0
+          ? data.project.map((proj) => (
+              <div key={proj.id} className="project-container-cv">
+                <div className="project-main-info-cv">
+                  <div className="project-name-cv">{proj.projectName}</div>
+                  <div className="project-summary-cv">
+                    {proj.projectSummary}
+                  </div>
                 </div>
               </div>
             ))

@@ -14,13 +14,14 @@ function App() {
     about: "",
     education: {},
     experience: [],
+    project: [],
   });
 
   const handleSubmit = (data) => {
     setUserData(data);
   };
 
-  const deleteExperience = (attribute, id) => {
+  const deleteData = (attribute, id) => {
     setUserData((prevData) => ({
       ...prevData,
       [attribute]: prevData[attribute]
@@ -35,7 +36,7 @@ function App() {
   return (
     <div id="content">
       <section className="form-section">
-        <Form onFormSubmit={handleSubmit} deleteExp={deleteExperience} />
+        <Form onFormSubmit={handleSubmit} deleteData={deleteData} />
       </section>
       <section className="cv-section">
         <CV data={userData} />
