@@ -292,6 +292,7 @@ function Experience({ onFormSubmit, deleteExp }) {
                     type="text"
                     id="company-name-input"
                     value={item.company}
+                    required={true}
                     onChange={(e) =>
                       updateExperience(item.id, "company", e.target.value)
                     }
@@ -456,6 +457,7 @@ function Project({ onFormSubmit, deleteProj }) {
                     type="text"
                     id="project-name-input"
                     value={proj.projectName}
+                    required={true}
                     onChange={(e) =>
                       updateProject(proj.id, "projectName", e.target.value)
                     }
@@ -463,8 +465,7 @@ function Project({ onFormSubmit, deleteProj }) {
                 </div>
                 <label htmlFor="project-summary-input">Summary</label>
                 <div className="project-summary-input-container">
-                  <input
-                    type="text"
+                  <textarea
                     id="project-summary-input"
                     value={proj.projectSummary}
                     onChange={(e) =>
