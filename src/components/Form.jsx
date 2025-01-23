@@ -217,7 +217,9 @@ function Education({ onFormSubmit }) {
 function Experience({ onFormSubmit }) {
   const [experience, setExperience] = useState([]);
   const [editFlag, setEditFlag] = useState(false);
-  const [individualEditFlag, setIndividualEditFlag] = useState(false);
+
+  const overviewEdit = editFlag === "overview";
+  const individualEdit = editFlag === "individual";
 
   const addExperienceInput = () => {
     setExperience((prevExperience) => [
@@ -232,7 +234,7 @@ function Experience({ onFormSubmit }) {
         endDate: "",
       },
     ]);
-    setIndividualEditFlag(true);
+    setEditFlag("individual");
   };
 
   const updateExperience = (id, field, newExperience) => {
@@ -266,9 +268,15 @@ function Experience({ onFormSubmit }) {
     <div className="experience-form-container">
       <div className="experience-form-header">
         <h1>Professional Experience</h1>
-        <button onClick={() => setEditFlag(!editFlag)}>Edit</button>
+        <button
+          onClick={() => {
+            editFlag ? setEditFlag(false) : setEditFlag("overview");
+          }}
+        >
+          Edit
+        </button>
       </div>
-      {individualEditFlag
+      {individualEdit
         ? experience
             .filter((item) => item.editing === true)
             .map((item) => (
@@ -280,7 +288,7 @@ function Experience({ onFormSubmit }) {
                   e.preventDefault();
                   onFormSubmit((prevData) => ({ ...prevData, experience }));
                   item.editing = false;
-                  setIndividualEditFlag(false);
+                  setEditFlag("overview");
                 }}
               >
                 <label htmlFor="company-name-input">Company Name</label>
@@ -355,7 +363,7 @@ function Experience({ onFormSubmit }) {
                 <button type="submit">Save</button>
               </form>
             ))
-        : editFlag
+        : overviewEdit
         ? experience.map((item) => (
             <Fragment key={item.id}>
               <div className="company-name">{item.company}</div>
@@ -364,7 +372,7 @@ function Experience({ onFormSubmit }) {
                   className="experience-edit-btn"
                   onClick={() => {
                     item.editing = true;
-                    setIndividualEditFlag(true);
+                    setEditFlag("individual");
                   }}
                 >
                   Edit
@@ -373,7 +381,7 @@ function Experience({ onFormSubmit }) {
             </Fragment>
           ))
         : null}
-      {individualEditFlag ? null : editFlag ? (
+      {individualEdit ? null : overviewEdit ? (
         <button onClick={addExperienceInput}>Add Experience</button>
       ) : null}
     </div>
