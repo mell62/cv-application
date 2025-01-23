@@ -20,10 +20,10 @@ function App() {
     setUserData(data);
   };
 
-  const deleteExperience = (id) => {
+  const deleteExperience = (attribute, id) => {
     setUserData((prevData) => ({
       ...prevData,
-      experience: prevData.experience
+      [attribute]: prevData[attribute]
         .filter((exp) => exp.id !== id)
         .map((exp, index) => ({
           ...exp,

@@ -245,7 +245,7 @@ function Experience({ onFormSubmit, deleteExp }) {
     );
   };
 
-  const deleteExperience = (id) => {
+  const deleteExperience = (attribute, id) => {
     setExperience((prevExp) =>
       prevExp
         .filter((exp) => exp.id !== id)
@@ -254,7 +254,7 @@ function Experience({ onFormSubmit, deleteExp }) {
           id: index + 1,
         }))
     );
-    deleteExp(id);
+    deleteExp(attribute, id);
     setEditFlag("overview");
   };
 
@@ -347,7 +347,10 @@ function Experience({ onFormSubmit, deleteExp }) {
                     }
                   />
                 </div>
-                <button type="button" onClick={() => deleteExperience(item.id)}>
+                <button
+                  type="button"
+                  onClick={() => deleteExperience("experience", item.id)}
+                >
                   Delete
                 </button>
                 <button type="submit">Save</button>
