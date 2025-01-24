@@ -87,6 +87,11 @@ h3 {
   background-color: #586994;
   color: #fffbfc;
   min-height: 12rem;
+  font-family: Calibri, "sans-serif";
+}
+
+.full-name-cv {
+  font-size: 2rem;
 }
 
 .general-sub {
@@ -99,7 +104,23 @@ h3 {
 .general-sub-1,
 .general-sub-2 {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+}
+
+.email-cv-container,
+.phone-cv-container,
+.linkedin-cv-container,
+.github-cv-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 12rem;
+}
+
+.general-cv-icon {
+  width: 1.2rem;
+  height: auto;
 }
 
 .main-info-cv {

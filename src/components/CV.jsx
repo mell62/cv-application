@@ -1,5 +1,9 @@
 import "../styles/styles.css";
 import "../styles/modern-normalize.css";
+import emailIcon from "../assets/email-icon.svg";
+import phoneIcon from "../assets/phone-icon.svg";
+import linkedinIcon from "../assets/linkedin-icon.svg";
+import githubIcon from "../assets/github-icon.svg";
 
 export default function CV({ data }) {
   return (
@@ -22,12 +26,48 @@ function GeneralInfo({ data }) {
       <h1 className="full-name-cv">{data.fullName}</h1>
       <div className="general-sub">
         <div className="general-sub-1">
-          <div className="email-cv">{data.email}</div>
-          <div className="phone-cv">{data.phone}</div>
+          <div className="email-cv-container">
+            {data.email ? (
+              <img
+                src={emailIcon}
+                alt="Email Icon"
+                className="general-cv-icon"
+              />
+            ) : null}
+            <div className="email-cv">{data.email}</div>
+          </div>
+          <div className="phone-cv-container">
+            {data.phone ? (
+              <img
+                src={phoneIcon}
+                alt="Phone Icon"
+                className="general-cv-icon"
+              />
+            ) : null}
+            <div className="phone-cv">{data.phone}</div>
+          </div>
         </div>
         <div className="general-sub-2">
-          <div className="linkedin-cv">{data.linkedin}</div>
-          <div className="github-cv">{data.github}</div>
+          <div className="linkedin-cv-container">
+            {data.linkedin ? (
+              <img
+                src={linkedinIcon}
+                alt="Linkedin Icon"
+                className="general-cv-icon"
+              />
+            ) : null}
+            <div className="linkedin-cv">{data.linkedin}</div>
+          </div>
+          <div className="github-cv-container">
+            {data.github ? (
+              <img
+                src={githubIcon}
+                alt="Github Icon"
+                className="general-cv-icon"
+              />
+            ) : null}
+            <div className="github-cv">{data.github}</div>
+          </div>
         </div>
       </div>
     </div>
