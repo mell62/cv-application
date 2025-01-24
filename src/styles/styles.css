@@ -148,7 +148,8 @@ h3 {
 .about-cv > :not(h1),
 .education-cv > :not(h1),
 .experience-cv > :not(h1),
-.project-cv > :not(h1) {
+.project-cv > :not(h1),
+.skills-cv > :not(h1) {
   font-family: Calibri, "sans-serif";
   font-size: 1.1rem;
 }
@@ -209,6 +210,7 @@ h3 {
 
 .skills-info-cv {
   display: flex;
-  gap: 4rem;
+  column-gap: 4rem;
+  row-gap: 1rem;
   flex-wrap: wrap;
 }
