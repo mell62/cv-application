@@ -138,7 +138,8 @@ h3 {
 .about-cv,
 .education-cv,
 .experience-cv,
-.project-cv {
+.project-cv,
+.skills-cv {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -204,4 +205,10 @@ h3 {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+}
+
+.skills-info-cv {
+  display: flex;
+  gap: 4rem;
+  flex-wrap: wrap;
 }

@@ -193,6 +193,7 @@ function Skills({ data }) {
           {data.skills.length > 0
             ? data.skills.map((skill) => (
                 <div key={skill.id} className="skills-container-cv">
+                  <span className="bullet-point">&#8226;</span>{" "}
                   {skill.skillName}
                 </div>
               ))
