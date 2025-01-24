@@ -78,7 +78,7 @@ function About({ data }) {
   return (
     <div className="about-cv">
       <h1 className="about-header">About</h1>
-      {data.about}
+      <div className="about-info-cv">{data.about}</div>
     </div>
   );
 }

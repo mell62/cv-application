@@ -130,12 +130,23 @@ h3 {
   gap: 2rem;
 }
 
+.main-info-cv h1 {
+  font-family: Helvetica, "sans-serif";
+}
+
 .about-cv,
 .education-cv,
 .experience-cv {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+
+.about-cv > :not(h1),
+.education-cv > :not(h1),
+.experience-cv > :not(h1) {
+  font-family: Calibri, "serif";
+  font-size: 1.1rem;
 }
 
 .education-info-cv,
