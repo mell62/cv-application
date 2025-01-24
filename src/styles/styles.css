@@ -149,8 +149,7 @@ h3 {
   font-size: 1.1rem;
 }
 
-.education-info-cv,
-.experience-container-cv {
+.education-info-cv {
   display: flex;
   gap: 2rem;
 }
@@ -159,10 +158,37 @@ h3 {
   font-weight: bold;
 }
 
-.education-timeline-info-cv {
+.education-timeline-info-cv,
+.experience-timeline-info-cv {
   display: flex;
   gap: 0.3rem;
   border-left: 0.1rem solid black;
   height: max-content;
   padding-left: 2rem;
+}
+
+.experience-info-cv {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.company-name-cv {
+  font-weight: bold;
+}
+
+.responsibilities-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-top: 0.5rem;
+}
+
+.experience-main-info-cv-row {
+  display: flex;
+  gap: 2rem;
+}
+
+.bullet-point {
+  color: #586994;
 }

@@ -115,15 +115,26 @@ function Experience({ data }) {
           ? data.experience.map((exp) => (
               <div key={exp.id} className="experience-container-cv">
                 <div className="experience-main-info-cv">
-                  <div className="company-name-cv">{exp.company}</div>
-                  <div className="company-position-cv">{exp.position}</div>
-                  <div className="responsibilities-cv">
-                    {exp.responsibilities}
+                  <div className="experience-main-info-cv-row">
+                    <div className="company-name-cv">{exp.company}</div>
+                    <div className="experience-timeline-info-cv">
+                      <div className="start-date-cv">{exp.startDate}</div>
+                      <span> - </span>
+                      <div className="end-date-cv">{exp.endDate}</div>
+                    </div>
                   </div>
-                </div>
-                <div className="experience-timeline-info-cv">
-                  <div className="start-date-cv">{exp.startDate}</div>
-                  <div className="end-date-cv">{exp.endDate}</div>
+                  <div className="company-position-cv">{exp.position}</div>
+                  <div className="responsibilities-container">
+                    {exp.responsibilities.split(".").map(
+                      (resp) =>
+                        resp ? (
+                          <div key={exp.id} className="responsibilities-cv">
+                            <span className="bullet-point">&#8226;</span> {resp}
+                          </div>
+                        ) : null
+                      //this is to split each responsibility that ends with fullstop into bullet points
+                    )}
+                  </div>
                 </div>
               </div>
             ))
