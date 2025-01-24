@@ -77,7 +77,7 @@ function GeneralInfo({ data }) {
 function About({ data }) {
   return (
     <div className="about-cv">
-      <h1 className="about-header">About</h1>
+      {data.about && <h1 className="about-header">About</h1>}
       <div className="about-info-cv">{data.about}</div>
     </div>
   );
@@ -86,7 +86,9 @@ function About({ data }) {
 function Education({ data }) {
   return (
     <div className="education-cv">
-      <h1 className="education-header">Education</h1>
+      {Object.keys(data.education).length > 0 && (
+        <h1 className="education-header">Education</h1>
+      )}
       <div className="education-info-cv">
         <div className="education-main-info-cv">
           <div className="school-name-cv">{data.education.school}</div>
@@ -109,7 +111,9 @@ function Education({ data }) {
 function Experience({ data }) {
   return (
     <div className="experience-cv">
-      <h1 className="experience-header">Experience</h1>
+      {data.experience.length > 0 && (
+        <h1 className="experience-header">Experience</h1>
+      )}
       <div className="experience-info-cv">
         {data.experience.length > 0
           ? data.experience.map((exp) => (
@@ -147,7 +151,7 @@ function Experience({ data }) {
 function Project({ data }) {
   return (
     <div className="project-cv">
-      <h1 className="project-header">Projects</h1>
+      {data.project.length > 0 && <h1 className="project-header">Projects</h1>}
       <div className="project-info-cv">
         {data.project.length > 0
           ? data.project.map((proj) => (
@@ -168,9 +172,9 @@ function Project({ data }) {
 function Skills({ data }) {
   return (
     <div className="skills-cv">
-      <h1 className="skills-header">Skills</h1>
+      {data.skills.length > 0 && <h1 className="skills-header">Skills</h1>}
       <div className="skills-info-cv">
-        {data.skills.length
+        {data.skills.length > 0
           ? data.skills.map((skill) => (
               <div key={skill.id} className="skills-container-cv">
                 {skill.skillName}
