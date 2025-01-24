@@ -3,6 +3,7 @@ import "../styles/styles.css";
 import "../styles/modern-normalize.css";
 import Form from "./Form";
 import CV from "./CV";
+import html2pdf from "html2pdf.js";
 
 function App() {
   const [userData, setUserData] = useState({
@@ -45,5 +46,23 @@ function App() {
     </div>
   );
 }
+
+const downloadBtn = document.querySelector(".download-cv-btn");
+
+const options = {
+  filename: "cv.pdf",
+  image: { type: "jpeg", quality: 0.98 },
+  html2canvas: { scale: 2 },
+  jsPDF: {
+    unit: "mm",
+    format: "a4",
+    orientation: "portrait",
+  },
+};
+
+downloadBtn.addEventListener("click", () => {
+  const cvSheet = document.querySelector(".cv-sheet"); //query selector is here so that js gets enough time to select the element once react renders it
+  html2pdf().set(options).from(cvSheet).save();
+});
 
 export default App;
