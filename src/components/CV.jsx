@@ -147,17 +147,16 @@ function Experience({ data }) {
 function Project({ data }) {
   return (
     <div className="project-cv">
-      <h1 className="project-header">Project</h1>
+      <h1 className="project-header">Projects</h1>
       <div className="project-info-cv">
         {data.project.length > 0
           ? data.project.map((proj) => (
-              <div key={proj.id} className="project-container-cv">
-                <div className="project-main-info-cv">
-                  <div className="project-name-cv">{proj.projectName}</div>
-                  <div className="project-summary-cv">
-                    {proj.projectSummary}
-                  </div>
+              <div key={proj.id} className="project-main-info-cv">
+                <div className="project-name-cv">
+                  <span className="bullet-point">&#8226;</span>{" "}
+                  {proj.projectName}
                 </div>
+                <div className="project-summary-cv">{proj.projectSummary}</div>
               </div>
             ))
           : null}

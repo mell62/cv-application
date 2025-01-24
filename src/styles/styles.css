@@ -132,11 +132,13 @@ h3 {
 
 .main-info-cv h1 {
   font-family: Helvetica, "sans-serif";
+  font-size: 1.5rem;
 }
 
 .about-cv,
 .education-cv,
-.experience-cv {
+.experience-cv,
+.project-cv {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -144,7 +146,8 @@ h3 {
 
 .about-cv > :not(h1),
 .education-cv > :not(h1),
-.experience-cv > :not(h1) {
+.experience-cv > :not(h1),
+.project-cv > :not(h1) {
   font-family: Calibri, "sans-serif";
   font-size: 1.1rem;
 }
@@ -154,7 +157,9 @@ h3 {
   gap: 2rem;
 }
 
-.school-name-cv {
+.school-name-cv,
+.company-name-cv,
+.project-name-cv {
   font-weight: bold;
 }
 
@@ -173,10 +178,6 @@ h3 {
   gap: 2rem;
 }
 
-.company-name-cv {
-  font-weight: bold;
-}
-
 .responsibilities-container {
   display: flex;
   flex-direction: column;
@@ -191,4 +192,16 @@ h3 {
 
 .bullet-point {
   color: #586994;
+}
+
+.project-info-cv {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.project-main-info-cv {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
