@@ -94,6 +94,7 @@ function Education({ data }) {
         </div>
         <div className="education-timeline-info-cv">
           <div className="start-date-cv">{data.education.startDate}</div>
+          <span> - </span>
           <div className="end-date-cv">
             {data.education.isPresentEducation
               ? "Present"

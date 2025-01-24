@@ -145,12 +145,24 @@ h3 {
 .about-cv > :not(h1),
 .education-cv > :not(h1),
 .experience-cv > :not(h1) {
-  font-family: Calibri, "serif";
+  font-family: Calibri, "sans-serif";
   font-size: 1.1rem;
 }
 
 .education-info-cv,
 .experience-container-cv {
   display: flex;
-  gap: 4rem;
+  gap: 2rem;
+}
+
+.school-name-cv {
+  font-weight: bold;
+}
+
+.education-timeline-info-cv {
+  display: flex;
+  gap: 0.3rem;
+  border-left: 0.1rem solid black;
+  height: max-content;
+  padding-left: 2rem;
 }
