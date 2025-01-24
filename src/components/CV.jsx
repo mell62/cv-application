@@ -76,119 +76,129 @@ function GeneralInfo({ data }) {
 
 function About({ data }) {
   return (
-    <div className="about-cv">
-      {data.about && <h1 className="about-header">About</h1>}
-      <div className="about-info-cv">{data.about}</div>
-    </div>
+    data.about && (
+      <div className="about-cv">
+        <h1 className="about-header">About</h1>
+        <div className="about-info-cv">{data.about}</div>
+      </div>
+    )
   );
 }
 
 function Education({ data }) {
   return (
-    <div className="education-cv">
-      {Object.keys(data.education).length > 0 && (
+    Object.keys(data.education).length > 0 && (
+      <div className="education-cv">
         <h1 className="education-header">Education</h1>
-      )}
-      <div className="education-info-cv">
-        <div className="education-main-info-cv">
-          <div className="school-name-cv">{data.education.school}</div>
-          <div className="degree-cv">{data.education.degree}</div>
-        </div>
-        <div className="education-timeline-info-cv">
-          <div className="start-date-cv">{data.education.startDate}</div>
-          {data.education.startDate &&
-            (data.education.endDate || data.education.isPresentEducation) && (
-              <span> - </span>
-            )}
-          <div className="end-date-cv">
-            {data.education.isPresentEducation
-              ? "Present"
-              : data.education.endDate}
+        <div className="education-info-cv">
+          <div className="education-main-info-cv">
+            <div className="school-name-cv">{data.education.school}</div>
+            <div className="degree-cv">{data.education.degree}</div>
+          </div>
+          <div className="education-timeline-info-cv">
+            <div className="start-date-cv">{data.education.startDate}</div>
+            {data.education.startDate &&
+              (data.education.endDate || data.education.isPresentEducation) && (
+                <span> - </span>
+              )}
+            <div className="end-date-cv">
+              {data.education.isPresentEducation
+                ? "Present"
+                : data.education.endDate}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    )
   );
 }
 
 function Experience({ data }) {
   return (
-    <div className="experience-cv">
-      {data.experience.length > 0 && (
+    data.experience.length > 0 && (
+      <div className="experience-cv">
         <h1 className="experience-header">Experience</h1>
-      )}
-      <div className="experience-info-cv">
-        {data.experience.length > 0
-          ? data.experience.map((exp) => (
-              <div key={exp.id} className="experience-container-cv">
-                <div className="experience-main-info-cv">
-                  <div className="experience-main-info-cv-row">
-                    <div className="company-name-cv">{exp.company}</div>
-                    <div className="experience-timeline-info-cv">
-                      <div className="start-date-cv">{exp.startDate}</div>
-                      {exp.startDate && (exp.endDate || exp.isPresentWork) && (
-                        <span> - </span>
-                      )}
-                      <div className="end-date-cv">
-                        {exp.isPresentWork ? "Present" : exp.endDate}
+        <div className="experience-info-cv">
+          {data.experience.length > 0
+            ? data.experience.map((exp) => (
+                <div key={exp.id} className="experience-container-cv">
+                  <div className="experience-main-info-cv">
+                    <div className="experience-main-info-cv-row">
+                      <div className="company-name-cv">{exp.company}</div>
+                      <div className="experience-timeline-info-cv">
+                        <div className="start-date-cv">{exp.startDate}</div>
+                        {exp.startDate &&
+                          (exp.endDate || exp.isPresentWork) && (
+                            <span> - </span>
+                          )}
+                        <div className="end-date-cv">
+                          {exp.isPresentWork ? "Present" : exp.endDate}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="company-position-cv">{exp.position}</div>
-                  <div className="responsibilities-container">
-                    {exp.responsibilities.split(".").map(
-                      (resp) =>
-                        resp ? (
-                          <div key={exp.id} className="responsibilities-cv">
-                            <span className="bullet-point">&#8226;</span> {resp}
-                          </div>
-                        ) : null
-                      //this is to split each responsibility that ends with fullstop into bullet points
-                    )}
+                    <div className="company-position-cv">{exp.position}</div>
+                    <div className="responsibilities-container">
+                      {exp.responsibilities.split(".").map(
+                        (resp) =>
+                          resp ? (
+                            <div key={exp.id} className="responsibilities-cv">
+                              <span className="bullet-point">&#8226;</span>{" "}
+                              {resp}
+                            </div>
+                          ) : null
+                        //this is to split each responsibility that ends with fullstop into bullet points
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))
-          : null}
+              ))
+            : null}
+        </div>
       </div>
-    </div>
+    )
   );
 }
 
 function Project({ data }) {
   return (
-    <div className="project-cv">
-      {data.project.length > 0 && <h1 className="project-header">Projects</h1>}
-      <div className="project-info-cv">
-        {data.project.length > 0
-          ? data.project.map((proj) => (
-              <div key={proj.id} className="project-main-info-cv">
-                <div className="project-name-cv">
-                  <span className="bullet-point">&#8226;</span>{" "}
-                  {proj.projectName}
+    data.project.length > 0 && (
+      <div className="project-cv">
+        <h1 className="project-header">Projects</h1>
+        <div className="project-info-cv">
+          {data.project.length > 0
+            ? data.project.map((proj) => (
+                <div key={proj.id} className="project-main-info-cv">
+                  <div className="project-name-cv">
+                    <span className="bullet-point">&#8226;</span>{" "}
+                    {proj.projectName}
+                  </div>
+                  <div className="project-summary-cv">
+                    {proj.projectSummary}
+                  </div>
                 </div>
-                <div className="project-summary-cv">{proj.projectSummary}</div>
-              </div>
-            ))
-          : null}
+              ))
+            : null}
+        </div>
       </div>
-    </div>
+    )
   );
 }
 
 function Skills({ data }) {
   return (
-    <div className="skills-cv">
-      {data.skills.length > 0 && <h1 className="skills-header">Skills</h1>}
-      <div className="skills-info-cv">
-        {data.skills.length > 0
-          ? data.skills.map((skill) => (
-              <div key={skill.id} className="skills-container-cv">
-                {skill.skillName}
-              </div>
-            ))
-          : null}
+    data.skills.length > 0 && (
+      <div className="skills-cv">
+        <h1 className="skills-header">Skills</h1>
+        <div className="skills-info-cv">
+          {data.skills.length > 0
+            ? data.skills.map((skill) => (
+                <div key={skill.id} className="skills-container-cv">
+                  {skill.skillName}
+                </div>
+              ))
+            : null}
+        </div>
       </div>
-    </div>
+    )
   );
 }
