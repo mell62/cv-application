@@ -1,3 +1,8 @@
+:root {
+  --header-color: #23486a;
+  --subheader-color: #4c7b8b;
+}
+
 body {
   background-color: #f4f4f9;
   overflow-x: hidden;
@@ -10,9 +15,43 @@ h3 {
 
 .hero {
   background-color: #fffbfc;
-  padding: 1.5rem 3rem;
+  padding: 2.5rem 3rem;
   box-shadow: 0.2rem 0rem 0.2rem #7d869c;
-  color: #586994;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hero-logo-main,
+.hero-logo-sub {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+}
+
+.hero-logo-main {
+  color: var(--header-color);
+}
+
+.hero-logo-sub {
+  font-size: 1rem;
+  color: var(--subheader-color);
+}
+
+.download-cv-btn {
+  background-color: transparent;
+  border-radius: 2rem;
+  padding: 1.2rem 1.8rem;
+  border: 0.15rem solid var(--header-color);
+  color: var(--header-color);
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in, color 0.2s ease-in;
+}
+
+.download-cv-btn:hover {
+  background-color: var(--header-color);
+  color: #fffbfc;
 }
 
 #content {
@@ -87,7 +126,7 @@ h3 {
   background-color: #586994;
   color: #fffbfc;
   min-height: 12rem;
-  font-family: Calibri, "sans-serif";
+  font-family: Calibri, sans-serif;
 }
 
 .full-name-cv {
@@ -131,7 +170,7 @@ h3 {
 }
 
 .main-info-cv h1 {
-  font-family: Helvetica, "sans-serif";
+  font-family: Helvetica, sans-serif;
   font-size: 1.5rem;
 }
 
@@ -150,7 +189,7 @@ h3 {
 .experience-cv > :not(h1),
 .project-cv > :not(h1),
 .skills-cv > :not(h1) {
-  font-family: Calibri, "sans-serif";
+  font-family: Calibri, sans-serif;
   font-size: 1.1rem;
 }
 
