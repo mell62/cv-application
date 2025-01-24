@@ -10,6 +10,7 @@ export default function CV({ data }) {
         <Education data={data} />
         <Experience data={data} />
         <Project data={data} />
+        <Skills data={data} />
       </div>
     </div>
   );
@@ -105,6 +106,23 @@ function Project({ data }) {
                     {proj.projectSummary}
                   </div>
                 </div>
+              </div>
+            ))
+          : null}
+      </div>
+    </div>
+  );
+}
+
+function Skills({ data }) {
+  return (
+    <div className="skills-cv">
+      <h1 className="skills-header">Skills</h1>
+      <div className="skills-info-cv">
+        {data.skills.length
+          ? data.skills.map((skill) => (
+              <div key={skill.id} className="skills-container-cv">
+                {skill.skillName}
               </div>
             ))
           : null}

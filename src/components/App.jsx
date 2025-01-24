@@ -15,6 +15,7 @@ function App() {
     education: {},
     experience: [],
     project: [],
+    skills: [],
   });
 
   const handleSubmit = (data) => {

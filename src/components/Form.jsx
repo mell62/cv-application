@@ -15,6 +15,7 @@ export default function Form({ onFormSubmit, deleteData }) {
       <Education onFormSubmit={onFormSubmit} />
       <Experience onFormSubmit={onFormSubmit} deleteExp={deleteData} />
       <Project onFormSubmit={onFormSubmit} deleteProj={deleteData} />
+      <Skills onFormSubmit={onFormSubmit} deleteSkill={deleteData} />
     </>
   );
 }
@@ -500,6 +501,85 @@ function Project({ onFormSubmit, deleteProj }) {
           ))
         : null}
       {overviewEdit ? <button onClick={addProject}>Add Project</button> : null}
+    </div>
+  );
+}
+
+function Skills({ onFormSubmit, deleteSkill }) {
+  const [skills, setSkills] = useState([]);
+  const [editFlag, setEditFlag] = useState(false);
+
+  const addSkill = () => {
+    setSkills((prevSkills) => [
+      ...prevSkills,
+      {
+        id: prevSkills.length + 1,
+        skillName: "",
+      },
+    ]);
+  };
+
+  const updateSkill = (id, newSkill) => {
+    setSkills((prevSkills) =>
+      prevSkills.map((skill) =>
+        skill.id === id ? { ...skill, skillName: newSkill } : skill
+      )
+    );
+  };
+
+  const deleteSkills = (id) => {
+    setSkills((prevSkills) =>
+      prevSkills
+        .filter((skill) => skill.id !== id)
+        .map((skill, index) => ({ ...skill, id: index + 1 }))
+    );
+    deleteSkill("skills", id);
+  };
+
+  return (
+    <div className="skills-form-container">
+      <div className="skills-form-header">
+        <h1>Skills</h1>
+        <button onClick={() => setEditFlag(!editFlag)}>Edit</button>
+      </div>
+      {editFlag ? (
+        <form
+          action=""
+          className="skills-form"
+          onSubmit={(e) => {
+            e.preventDefault();
+            onFormSubmit((prevData) => ({
+              ...prevData,
+              skills: skills,
+            }));
+          }}
+        >
+          {skills.map((skill, index) => (
+            <div key={skill.id} className="skill-container">
+              <label htmlFor={`skill-${index + 1}-input`}>
+                skill {index + 1}
+              </label>
+              <div className="skill-name-input-container">
+                <input
+                  type="text"
+                  id={`skill-${index + 1}-input`}
+                  value={skill.skillName}
+                  onChange={(e) => updateSkill(skill.id, e.target.value)}
+                />
+              </div>
+              <button type="button" onClick={() => deleteSkills(skill.id)}>
+                Delete
+              </button>
+            </div>
+          ))}
+          {skills.length < 8 && (
+            <button type="button" onClick={addSkill}>
+              Add Skill
+            </button>
+          )}
+          <button type="submit">Save</button>
+        </form>
+      ) : null}
     </div>
   );
 }
