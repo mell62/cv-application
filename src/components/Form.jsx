@@ -234,6 +234,7 @@ function Experience({ onFormSubmit, deleteExp }) {
         responsibilities: "",
         startDate: "",
         endDate: "",
+        isPresentWork: false,
       },
     ]);
     setEditFlag("individual");
@@ -349,6 +350,20 @@ function Experience({ onFormSubmit, deleteExp }) {
                       updateExperience(item.id, "endDate", e.target.value)
                     }
                   />
+                  <input
+                    type="checkbox"
+                    id="present-experience"
+                    checked={item.isPresentWork}
+                    onChange={() => {}}
+                    onClick={() =>
+                      updateExperience(
+                        item.id,
+                        "isPresentWork",
+                        !item.isPresentWork
+                      )
+                    }
+                  />
+                  <label htmlFor="present-experience">Current</label>
                 </div>
                 <button
                   type="button"
