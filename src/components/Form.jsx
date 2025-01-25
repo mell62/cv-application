@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import "../styles/styles.css";
 import "../styles/modern-normalize.css";
 import expandIcon from "../assets/expand-icon.svg";
@@ -468,7 +468,7 @@ function Experience({ onFormSubmit, deleteExp }) {
               <div className="company-name">{item.company}</div>
               {item.company ? (
                 <button
-                  className="experience-edit-btn"
+                  className="edit-btn"
                   onClick={() => {
                     item.editing = true;
                     setEditFlag("individual");
@@ -537,11 +537,16 @@ function Project({ onFormSubmit, deleteProj }) {
       <div className="project-form-header">
         <h1>Projects</h1>
         <button
-          onClick={() =>
-            editFlag ? setEditFlag(false) : setEditFlag("overview")
-          }
+          className="expand-btn"
+          onClick={() => {
+            editFlag ? setEditFlag(false) : setEditFlag("overview");
+          }}
         >
-          Edit
+          {editFlag ? (
+            <img src={minimizeIcon} alt="Minimize card button" />
+          ) : (
+            <img src={expandIcon} alt="Expand card button" />
+          )}
         </button>
       </div>
       {individualEdit
@@ -559,43 +564,67 @@ function Project({ onFormSubmit, deleteProj }) {
                   setEditFlag("overview");
                 }}
               >
-                <label htmlFor="project-name-input">Name</label>
-                <div className="project-name-input-container">
-                  <input
-                    type="text"
-                    id="project-name-input"
-                    value={proj.projectName}
-                    required={true}
-                    onChange={(e) =>
-                      updateProject(proj.id, "projectName", e.target.value)
-                    }
-                  />
+                <div className="project-input-container">
+                  <div className="project-input-sub-container">
+                    <div className="individual-input-container">
+                      <label htmlFor="project-name-input">Name</label>
+                      <div className="project-name-input-container">
+                        <input
+                          type="text"
+                          id="project-name-input"
+                          value={proj.projectName}
+                          className="project-form-input"
+                          required={true}
+                          onChange={(e) =>
+                            updateProject(
+                              proj.id,
+                              "projectName",
+                              e.target.value
+                            )
+                          }
+                        />
+                      </div>
+                    </div>
+                    <div className="individual-input-container">
+                      <label htmlFor="project-summary-input">Summary</label>
+                      <div className="project-summary-input-container">
+                        <textarea
+                          id="project-summary-input"
+                          value={proj.projectSummary}
+                          className="project-form-input"
+                          onChange={(e) =>
+                            updateProject(
+                              proj.id,
+                              "projectSummary",
+                              e.target.value
+                            )
+                          }
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="project-individual-btns-container">
+                    <button
+                      type="button"
+                      className="delete-btn"
+                      onClick={() => deleteProject("project", proj.id)}
+                    >
+                      Delete
+                    </button>
+                    <button type="submit" className="submit-btn">
+                      Save
+                    </button>
+                  </div>
                 </div>
-                <label htmlFor="project-summary-input">Summary</label>
-                <div className="project-summary-input-container">
-                  <textarea
-                    id="project-summary-input"
-                    value={proj.projectSummary}
-                    onChange={(e) =>
-                      updateProject(proj.id, "projectSummary", e.target.value)
-                    }
-                  />
-                </div>
-                <button
-                  type="button"
-                  onClick={() => deleteProject("project", proj.id)}
-                >
-                  Delete
-                </button>
-                <button type="submit">Save</button>
               </form>
             ))
         : overviewEdit
         ? project.map((proj) => (
-            <Fragment key={proj.id}>
+            <div key={proj.id} className="project-overview-container">
               <div className="project-name">{proj.projectName}</div>
               {proj.projectName ? (
                 <button
+                  className="edit-btn"
                   onClick={() => {
                     setEditFlag("individual");
                     proj.editing = true;
@@ -604,10 +633,16 @@ function Project({ onFormSubmit, deleteProj }) {
                   Edit
                 </button>
               ) : null}
-            </Fragment>
+            </div>
           ))
         : null}
-      {overviewEdit ? <button onClick={addProject}>Add Project</button> : null}
+      {overviewEdit ? (
+        <div className="add-project-btn-container">
+          <button onClick={addProject} className="add-project-btn">
+            Add Project
+          </button>
+        </div>
+      ) : null}
     </div>
   );
 }
@@ -647,7 +682,18 @@ function Skills({ onFormSubmit, deleteSkill }) {
     <div className="skills-form-container">
       <div className="skills-form-header">
         <h1>Skills</h1>
-        <button onClick={() => setEditFlag(!editFlag)}>Edit</button>
+        <button
+          className="expand-btn"
+          onClick={() => {
+            editFlag ? setEditFlag(false) : setEditFlag("overview");
+          }}
+        >
+          {editFlag ? (
+            <img src={minimizeIcon} alt="Minimize card button" />
+          ) : (
+            <img src={expandIcon} alt="Expand card button" />
+          )}
+        </button>
       </div>
       {editFlag ? (
         <form
@@ -662,29 +708,48 @@ function Skills({ onFormSubmit, deleteSkill }) {
           }}
         >
           {skills.map((skill, index) => (
-            <div key={skill.id} className="skill-container">
-              <label htmlFor={`skill-${index + 1}-input`}>
-                skill {index + 1}
-              </label>
-              <div className="skill-name-input-container">
-                <input
-                  type="text"
-                  id={`skill-${index + 1}-input`}
-                  value={skill.skillName}
-                  onChange={(e) => updateSkill(skill.id, e.target.value)}
-                />
+            <div key={skill.id} className="skills-input-container">
+              <div className="skills-input-sub-container">
+                <div className="individual-input-container">
+                  <label htmlFor={`skill-${index + 1}-input`}>
+                    skill {index + 1}
+                  </label>
+                  <div className="skill-name-input-container">
+                    <input
+                      type="text"
+                      id={`skill-${index + 1}-input`}
+                      value={skill.skillName}
+                      className="skills-form-input"
+                      onChange={(e) => updateSkill(skill.id, e.target.value)}
+                    />
+                  </div>
+                </div>
               </div>
-              <button type="button" onClick={() => deleteSkills(skill.id)}>
-                Delete
-              </button>
+              <div className="skills-individual-btns-container">
+                <button
+                  type="button"
+                  className="delete-btn"
+                  onClick={() => deleteSkills(skill.id)}
+                >
+                  Delete
+                </button>
+              </div>
             </div>
           ))}
-          {skills.length < 8 && (
-            <button type="button" onClick={addSkill}>
-              Add Skill
+          <div className="skills-overview-btns-container">
+            {skills.length < 8 && (
+              <button
+                type="button"
+                className="add-skill-btn"
+                onClick={addSkill}
+              >
+                Add Skill
+              </button>
+            )}
+            <button type="submit" className="submit-btn">
+              Save
             </button>
-          )}
-          <button type="submit">Save</button>
+          </div>
         </form>
       ) : null}
     </div>
