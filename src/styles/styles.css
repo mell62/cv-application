@@ -106,7 +106,8 @@ h3 {
 
 .general-form-input,
 .about-form-input,
-.education-form-input {
+.education-form-input,
+.experience-form-input {
   padding: 0.5rem;
   appearance: none;
   border-radius: 0.4rem;
@@ -116,9 +117,11 @@ h3 {
   background-color: #f4f4f9;
 }
 
-.submit-btn {
+.submit-btn,
+.add-experience-btn,
+.delete-btn {
   background-color: var(--secondary-color);
-  border-radius: 1.2rem;
+  border-radius: 2rem;
   padding: 0.9rem 1.6rem;
   border: none;
   cursor: pointer;
@@ -127,16 +130,23 @@ h3 {
   transition: transform 0.2s ease;
 }
 
-.submit-btn:hover {
+.submit-btn:hover,
+.add-experience-btn:hover,
+.experience-edit-btn:hover,
+.delete-btn:hover {
   transform: scale(1.1);
 }
 
-.submit-btn:active {
+.submit-btn:active,
+.add-experience-btn:active,
+.experience-edit-btn:active,
+.delete-btn:active {
   transform: scale(1);
 }
 
 .about-form-container,
-.education-form-container {
+.education-form-container,
+.experience-form-container {
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -146,7 +156,8 @@ h3 {
 }
 
 .about-form-header,
-.education-form-header {
+.education-form-header,
+.experience-form-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -172,7 +183,8 @@ h3 {
 }
 
 .about-input-container,
-.education-input-container {
+.education-input-container,
+.experience-input-container {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -193,7 +205,8 @@ h3 {
   line-height: 0;
 }
 
-.education-input-sub-container {
+.education-input-sub-container,
+.experience-input-sub-container {
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
@@ -237,6 +250,32 @@ h3 {
   background-size: cover;
   height: 1.1rem;
   width: 1.1rem;
+}
+
+.experience-overview-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  background-color: var(--secondary-color);
+  padding: 0.5rem 4rem;
+  border-radius: 0.2rem;
+}
+
+.experience-edit-btn {
+  background-color: var(--card-color);
+  border-radius: 2rem;
+  padding: 0.9rem 1.6rem;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  will-change: transform;
+  transition: transform 0.2s ease;
+}
+
+.experience-individual-btns-container {
+  display: flex;
+  gap: 1rem;
 }
 
 .cv-section {
