@@ -1,6 +1,8 @@
 :root {
   --header-color: #23486a;
   --subheader-color: #4c7b8b;
+  --card-color: #a6b1e1;
+  --secondary-color: #dcd6f7;
 }
 
 body {
@@ -70,14 +72,19 @@ h3 {
   gap: 2rem;
   font-family: "Zen Maru Gothic", sans-serif;
   font-weight: bold;
+  color: #1f1235;
+}
+
+.form-section button {
+  color: inherit;
 }
 
 .general-form {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  background-color: #a6b1e1;
-  padding: 2rem;
+  background-color: var(--card-color);
+  padding: 1.5rem;
   border-radius: 0.5rem;
   justify-content: center;
   align-items: center;
@@ -101,18 +108,19 @@ h3 {
   gap: 0.5rem;
 }
 
-.general-form-input {
+.general-form-input,
+.about-form-input {
   padding: 0.5rem;
   appearance: none;
   border-radius: 0.4rem;
   width: 16rem;
-  border: 0.15rem solid #dcd6f7;
+  border: 0.15rem solid var(--secondary-color);
   outline: none;
   background-color: #f4f4f9;
 }
 
-.general-submit-btn {
-  background-color: #dcd6f7;
+.submit-btn {
+  background-color: var(--secondary-color);
   border-radius: 1.2rem;
   padding: 0.9rem 1.6rem;
   border: none;
@@ -122,46 +130,73 @@ h3 {
   transition: transform 0.2s ease;
 }
 
-.general-submit-btn:hover {
+.submit-btn:hover {
   transform: scale(1.1);
 }
 
-.general-submit-btn:active {
+.submit-btn:active {
   transform: scale(1);
 }
 
-.about-form-container,
-.education-form-container {
+.about-form-container {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 2rem;
+  background-color: var(--card-color);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
 }
 
 .about-form-header,
 .education-form-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .form-hide {
-  opacity: 0;
+  margin-top: -100%;
   visibility: hidden;
-  transition: opacity 1s, transform 0.5s;
-  transform: translateY(-2rem);
-  max-height: 0;
+  margin-bottom: 2rem;
+  transition: margin-top 0.5s ease-in, visibility 0.5s ease-in;
 }
 
 .form-show {
-  opacity: 1;
+  margin-top: 0;
   visibility: visible;
-  transform: translateY(0rem);
-  max-height: max-content;
+  transition: margin-top 0.5s ease-out, visibility 0.5s ease-out;
 }
 
 .about-form {
+  overflow: hidden;
+  margin-bottom: -2rem;
+}
+
+.about-input-container {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  align-items: start;
+  justify-content: center;
+}
+
+.about-input-container .submit-btn {
+  align-self: center;
+}
+
+.expand-btn {
+  background-color: transparent;
+  padding: 0;
+  max-height: min-content;
+  border: none;
+  cursor: pointer;
+  line-height: 0;
+}
+
+.education-form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .cv-section {

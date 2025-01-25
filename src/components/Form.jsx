@@ -1,6 +1,8 @@
 import { Fragment, useState } from "react";
 import "../styles/styles.css";
 import "../styles/modern-normalize.css";
+import expandIcon from "../assets/expand-icon.svg";
+import minimizeIcon from "../assets/minimize-icon.svg";
 
 export default function Form({ onFormSubmit, deleteData }) {
   return (
@@ -91,7 +93,7 @@ function GeneralInfo({ onFormSubmit }) {
           </div>
         </div>
       </div>
-      <button type="submit" className="general-submit-btn">
+      <button type="submit" className="submit-btn">
         SAVE
       </button>
     </form>
@@ -111,18 +113,34 @@ function About({ onFormSubmit }) {
     <div className="about-form-container">
       <div className="about-form-header">
         <h1>About</h1>
-        <button onClick={() => setEditFlag(!editFlag)}>Edit</button>
+        <button
+          onClick={() => {
+            setEditFlag(!editFlag);
+          }}
+          className="expand-btn"
+        >
+          {editFlag ? (
+            <img src={minimizeIcon} alt="Minimize card button" />
+          ) : (
+            <img src={expandIcon} alt="Expand card button" />
+          )}
+        </button>
       </div>
-      <form
-        action=""
-        className={`about-form form-hide ${editFlag ? "form-show" : ""}`}
-        onSubmit={handleSubmit}
-      >
-        <textarea
-          id="about"
-          onChange={(e) => setAbout(e.target.value)}
-        ></textarea>
-        <button type="submit">Save</button>
+      <form action="" className="about-form" onSubmit={handleSubmit}>
+        <div
+          className={`about-input-container form-hide ${
+            editFlag ? "form-show" : ""
+          }`}
+        >
+          <textarea
+            id="about"
+            className="about-form-input"
+            onChange={(e) => setAbout(e.target.value)}
+          ></textarea>
+          <button type="submit" className="submit-btn">
+            SAVE
+          </button>
+        </div>
       </form>
     </div>
   );
