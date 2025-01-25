@@ -98,18 +98,15 @@ h3 {
   align-items: center;
 }
 
-.full-name-container,
-.email-container,
-.phone-container,
-.linkedin-container,
-.github-container {
+.individual-input-container {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
 .general-form-input,
-.about-form-input {
+.about-form-input,
+.education-form-input {
   padding: 0.5rem;
   appearance: none;
   border-radius: 0.4rem;
@@ -138,7 +135,8 @@ h3 {
   transform: scale(1);
 }
 
-.about-form-container {
+.about-form-container,
+.education-form-container {
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -155,7 +153,7 @@ h3 {
 }
 
 .form-hide {
-  margin-top: -100%;
+  margin-top: -200%;
   visibility: hidden;
   margin-bottom: 2rem;
   transition: margin-top 0.5s ease-in, visibility 0.5s ease-in;
@@ -167,12 +165,14 @@ h3 {
   transition: margin-top 0.5s ease-out, visibility 0.5s ease-out;
 }
 
-.about-form {
+.about-form,
+.education-form {
   overflow: hidden;
   margin-bottom: -2rem;
 }
 
-.about-input-container {
+.about-input-container,
+.education-input-container {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -193,10 +193,50 @@ h3 {
   line-height: 0;
 }
 
-.education-form-container {
+.education-input-sub-container {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.end-date-input-container {
+  display: flex;
   gap: 1rem;
+  align-items: center;
+}
+
+.present-checkbox-container {
+  display: flex;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.present-checkbox {
+  appearance: none;
+  width: 1.2rem;
+  height: 1.2rem;
+  background-color: #f4f4f9;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.present-checkbox:hover {
+  background-color: var(--secondary-color);
+}
+
+.present-checkbox:checked {
+  background-color: var(--secondary-color);
+}
+
+.present-checkbox:checked::before {
+  content: "";
+  background-image: url("../assets/check-icon.svg");
+  color: #1f1235;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 1.1rem;
+  width: 1.1rem;
 }
 
 .cv-section {

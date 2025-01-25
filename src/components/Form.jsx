@@ -37,7 +37,7 @@ function GeneralInfo({ onFormSubmit }) {
   return (
     <form action="" onSubmit={handleSubmit} className="general-form">
       <div className="general-form-container">
-        <div className="full-name-container">
+        <div className="full-name-container individual-input-container">
           <label htmlFor="full-name">Full Name</label>
           <div className="full-name-input-container">
             <input
@@ -48,7 +48,7 @@ function GeneralInfo({ onFormSubmit }) {
             />
           </div>
         </div>
-        <div className="email-container">
+        <div className="email-container individual-input-container">
           <label htmlFor="email">Email ID</label>
           <div className="email-input-container">
             <input
@@ -59,7 +59,7 @@ function GeneralInfo({ onFormSubmit }) {
             />
           </div>
         </div>
-        <div className="phone-container">
+        <div className="phone-container individual-input-container">
           <label htmlFor="phone">Phone</label>
           <div className="phone-input-container">
             <input
@@ -70,7 +70,7 @@ function GeneralInfo({ onFormSubmit }) {
             />
           </div>
         </div>
-        <div className="linkedin-container">
+        <div className="linkedin-container individual-input-container">
           <label htmlFor="linkedin">Linkedin</label>
           <div className="linkedin-input-container">
             <input
@@ -81,7 +81,7 @@ function GeneralInfo({ onFormSubmit }) {
             />
           </div>
         </div>
-        <div className="github-container">
+        <div className="github-container individual-input-container">
           <label htmlFor="github">Github</label>
           <div className="github-input-container">
             <input
@@ -164,75 +164,99 @@ function Education({ onFormSubmit }) {
     <div className="education-form-container">
       <div className="education-form-header">
         <h1>Education</h1>
-        <button onClick={() => setEditFlag(!editFlag)}>Edit</button>
+        <button
+          onClick={() => {
+            setEditFlag(!editFlag);
+          }}
+          className="expand-btn"
+        >
+          {editFlag ? (
+            <img src={minimizeIcon} alt="Minimize card button" />
+          ) : (
+            <img src={expandIcon} alt="Expand card button" />
+          )}
+        </button>
       </div>
-      <form
-        action=""
-        className={`education-form form-hide ${editFlag ? "form-show" : ""}`}
-        onSubmit={handleSubmit}
-      >
-        <div className="school-container">
-          <label htmlFor="school">School</label>
-          <div className="school-input-container">
-            <input
-              type="text"
-              id="school"
-              onChange={(e) =>
-                setEducation({ ...education, school: e.target.value })
-              }
-            />
+      <form action="" className="education-form" onSubmit={handleSubmit}>
+        <div
+          className={`education-input-container form-hide ${
+            editFlag ? "form-show" : ""
+          }`}
+        >
+          <div className="education-input-sub-container">
+            <div className="school-container individual-input-container">
+              <label htmlFor="school">School</label>
+              <div className="school-input-container">
+                <input
+                  type="text"
+                  id="school"
+                  className="education-form-input"
+                  onChange={(e) =>
+                    setEducation({ ...education, school: e.target.value })
+                  }
+                />
+              </div>
+            </div>
+            <div className="degree-container individual-input-container">
+              <label htmlFor="degree">Degree</label>
+              <div className="degree-input-container">
+                <input
+                  type="text"
+                  id="degree"
+                  className="education-form-input"
+                  onChange={(e) =>
+                    setEducation({ ...education, degree: e.target.value })
+                  }
+                />
+              </div>
+            </div>
+            <div className="start-date-container individual-input-container">
+              <label htmlFor="start-date">Start Date</label>
+              <div className="start-date-input-container">
+                <input
+                  type="date"
+                  id="start-date"
+                  className="education-form-input"
+                  max={new Date().toISOString().split("T")[0]}
+                  onChange={(e) =>
+                    setEducation({ ...education, startDate: e.target.value })
+                  }
+                />
+              </div>
+            </div>
+            <div className="end-date-container individual-input-container">
+              <label htmlFor="end-date">End Date</label>
+              <div className="end-date-input-container">
+                <input
+                  type="date"
+                  id="end-date"
+                  className="education-form-input"
+                  max={new Date().toISOString().split("T")[0]}
+                  onChange={(e) =>
+                    setEducation({ ...education, endDate: e.target.value })
+                  }
+                />
+                <div className="present-checkbox-container">
+                  <input
+                    type="checkbox"
+                    id="present-education"
+                    className="present-checkbox"
+                    onClick={() =>
+                      setEducation({
+                        ...education,
+                        isPresentEducation: !education.isPresentEducation,
+                      })
+                    }
+                  />
+                  <label htmlFor="present-education">Current</label>
+                </div>
+              </div>
+            </div>
           </div>
+          <button type="submit" className="submit-btn">
+            SAVE
+          </button>
         </div>
-        <div className="degree-container">
-          <label htmlFor="degree">Degree</label>
-          <div className="degree-input-container">
-            <input
-              type="text"
-              id="degree"
-              onChange={(e) =>
-                setEducation({ ...education, degree: e.target.value })
-              }
-            />
-          </div>
-        </div>
-        <div className="start-date-container">
-          <label htmlFor="start-date">Start Date</label>
-          <div className="start-date-input-container">
-            <input
-              type="date"
-              id="start-date"
-              max={new Date().toISOString().split("T")[0]}
-              onChange={(e) =>
-                setEducation({ ...education, startDate: e.target.value })
-              }
-            />
-          </div>
-        </div>
-        <div className="end-date-container">
-          <label htmlFor="end-date">End Date</label>
-          <div className="end-date-input-container">
-            <input
-              type="date"
-              id="end-date"
-              max={new Date().toISOString().split("T")[0]}
-              onChange={(e) =>
-                setEducation({ ...education, endDate: e.target.value })
-              }
-            />
-            <input
-              type="checkbox"
-              id="present-education"
-              onClick={() =>
-                setEducation({
-                  ...education,
-                  isPresentEducation: !education.isPresentEducation,
-                })
-              }
-            />
-            <label htmlFor="present-education">Current</label>
-          </div>
-        </div>
-        <button type="submit">Save</button>
       </form>
     </div>
   );
