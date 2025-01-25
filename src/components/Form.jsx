@@ -2,11 +2,6 @@ import { Fragment, useState } from "react";
 import "../styles/styles.css";
 import "../styles/modern-normalize.css";
 
-const toggleFormVisibility = (className) => {
-  const formEle = document.querySelector(className);
-  formEle.classList.toggle("form-show");
-};
-
 export default function Form({ onFormSubmit, deleteData }) {
   return (
     <>
@@ -105,6 +100,7 @@ function GeneralInfo({ onFormSubmit }) {
 
 function About({ onFormSubmit }) {
   const [about, setAbout] = useState("");
+  const [editFlag, setEditFlag] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -115,11 +111,13 @@ function About({ onFormSubmit }) {
     <div className="about-form-container">
       <div className="about-form-header">
         <h1>About</h1>
-        <button onClick={() => toggleFormVisibility(".about-form")}>
-          Edit
-        </button>
+        <button onClick={() => setEditFlag(!editFlag)}>Edit</button>
       </div>
-      <form action="" className="about-form form-hide" onSubmit={handleSubmit}>
+      <form
+        action=""
+        className={`about-form form-hide ${editFlag ? "form-show" : ""}`}
+        onSubmit={handleSubmit}
+      >
         <textarea
           id="about"
           onChange={(e) => setAbout(e.target.value)}
@@ -138,6 +136,7 @@ function Education({ onFormSubmit }) {
     endDate: "",
     isPresentEducation: false,
   });
+  const [editFlag, setEditFlag] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -147,13 +146,11 @@ function Education({ onFormSubmit }) {
     <div className="education-form-container">
       <div className="education-form-header">
         <h1>Education</h1>
-        <button onClick={() => toggleFormVisibility(".education-form")}>
-          Edit
-        </button>
+        <button onClick={() => setEditFlag(!editFlag)}>Edit</button>
       </div>
       <form
         action=""
-        className="education-form form-hide"
+        className={`education-form form-hide ${editFlag ? "form-show" : ""}`}
         onSubmit={handleSubmit}
       >
         <div className="school-container">
