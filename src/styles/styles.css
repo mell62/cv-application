@@ -46,7 +46,7 @@ h3 {
   font-family: "Montserrat", sans-serif;
   font-size: 0.8rem;
   cursor: pointer;
-  transition: background-color 0.2s ease-in, color 0.2s ease-in;
+  transition: background-color 0.2s ease, color 0.2s ease-in;
 }
 
 .download-cv-btn:hover {
@@ -68,6 +68,66 @@ h3 {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-weight: bold;
+}
+
+.general-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  background-color: #a6b1e1;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.1rem;
+}
+
+.general-form-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: center;
+}
+
+.full-name-container,
+.email-container,
+.phone-container,
+.linkedin-container,
+.github-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.general-form-input {
+  padding: 0.5rem;
+  appearance: none;
+  border-radius: 0.4rem;
+  width: 16rem;
+  border: 0.15rem solid #dcd6f7;
+  outline: none;
+  background-color: #f4f4f9;
+}
+
+.general-submit-btn {
+  background-color: #dcd6f7;
+  border-radius: 1.2rem;
+  padding: 0.9rem 1.6rem;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  will-change: transform;
+  transition: transform 0.2s ease;
+}
+
+.general-submit-btn:hover {
+  transform: scale(1.1);
+}
+
+.general-submit-btn:active {
+  transform: scale(1);
 }
 
 .about-form-container,
@@ -98,7 +158,6 @@ h3 {
   max-height: max-content;
 }
 
-.general-form,
 .about-form {
   display: flex;
   flex-direction: column;

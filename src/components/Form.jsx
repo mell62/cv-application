@@ -39,58 +39,65 @@ function GeneralInfo({ onFormSubmit }) {
   };
   return (
     <form action="" onSubmit={handleSubmit} className="general-form">
-      <div className="full-name-container">
-        <label htmlFor="full-name">Full Name</label>
-        <div className="full-name-input-container">
-          <input
-            type="text"
-            id="full-name"
-            onChange={(e) => setFullName(e.target.value)}
-          />
+      <div className="general-form-container">
+        <div className="full-name-container">
+          <label htmlFor="full-name">Full Name</label>
+          <div className="full-name-input-container">
+            <input
+              type="text"
+              id="full-name"
+              className="general-form-input"
+              onChange={(e) => setFullName(e.target.value)}
+            />
+          </div>
+        </div>
+        <div className="email-container">
+          <label htmlFor="email">Email ID</label>
+          <div className="email-input-container">
+            <input
+              type="email"
+              id="email"
+              className="general-form-input"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+        </div>
+        <div className="phone-container">
+          <label htmlFor="phone">Phone</label>
+          <div className="phone-input-container">
+            <input
+              type="tel"
+              id="phone"
+              className="general-form-input"
+              onChange={(e) => setPhone(e.target.value)}
+            />
+          </div>
+        </div>
+        <div className="linkedin-container">
+          <label htmlFor="linkedin">Linkedin</label>
+          <div className="linkedin-input-container">
+            <input
+              type="text"
+              id="linkedin"
+              className="general-form-input"
+              onChange={(e) => setLinkedin(e.target.value)}
+            />
+          </div>
+        </div>
+        <div className="github-container">
+          <label htmlFor="github">Github</label>
+          <div className="github-input-container">
+            <input
+              type="text"
+              id="github"
+              className="general-form-input"
+              onChange={(e) => setGithub(e.target.value)}
+            />
+          </div>
         </div>
       </div>
-      <div className="email-container">
-        <label htmlFor="email">Email ID</label>
-        <div className="email-input-container">
-          <input
-            type="email"
-            id="email"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-      </div>
-      <div className="phone-container">
-        <label htmlFor="phone">Phone</label>
-        <div className="phone-input-container">
-          <input
-            type="tel"
-            id="phone"
-            onChange={(e) => setPhone(e.target.value)}
-          />
-        </div>
-      </div>
-      <div className="linkedin-container">
-        <label htmlFor="linkedin">Linkedin</label>
-        <div className="linkedin-input-container">
-          <input
-            type="text"
-            id="linkedin"
-            onChange={(e) => setLinkedin(e.target.value)}
-          />
-        </div>
-      </div>
-      <div className="github-container">
-        <label htmlFor="github">Github</label>
-        <div className="github-input-container">
-          <input
-            type="text"
-            id="github"
-            onChange={(e) => setGithub(e.target.value)}
-          />
-        </div>
-      </div>
-      <button type="submit" className="general-submit">
-        Save
+      <button type="submit" className="general-submit-btn">
+        SAVE
       </button>
     </form>
   );
