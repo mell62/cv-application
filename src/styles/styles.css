@@ -3,6 +3,7 @@
   --subheader-color: #4c7b8b;
   --card-color: #d1d1e9;
   --secondary-color: #a6b1e1;
+  --black: #1f1235;
 }
 
 body {
@@ -72,7 +73,7 @@ h3 {
   gap: 2rem;
   font-family: "Zen Maru Gothic", sans-serif;
   font-weight: bold;
-  color: #1f1235;
+  color: black;
 }
 
 .form-section button {
@@ -140,6 +141,11 @@ h3 {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+}
+
+.experience-overview-super-container,
+.project-overview-super-container {
+  gap: 0;
 }
 
 .about-form-header,
@@ -210,6 +216,18 @@ h3 {
   line-height: 0;
 }
 
+.edit-btn {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.edit-icon {
+  width: 1.2rem;
+  height: auto;
+}
+
 .skills-input-super-container {
   display: flex;
   gap: 2rem;
@@ -257,7 +275,7 @@ h3 {
 .present-checkbox:checked::before {
   content: "";
   background-image: url("../assets/check-icon.svg");
-  color: #1f1235;
+  color: var(--black);
   position: absolute;
   background-repeat: no-repeat;
   background-size: cover;
@@ -276,20 +294,17 @@ h3 {
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  background-color: var(--secondary-color);
-  padding: 0.5rem 4rem;
-  border-radius: 0.2rem;
+  padding: 1rem 4rem;
 }
 
-.edit-btn {
-  background-color: var(--card-color);
-  border-radius: 2rem;
-  padding: 0.9rem 1.6rem;
-  border: none;
-  cursor: pointer;
-  font-size: 0.95rem;
-  will-change: transform;
-  transition: transform 0.2s ease;
+.experience-overview-container:nth-child(1n),
+.project-overview-container:nth-child(1n) {
+  border-bottom: 0.1rem solid var(--black);
+}
+
+.experience-overview-container:last-child,
+.project-overview-container:last-child {
+  border-bottom: none;
 }
 
 .experience-individual-btns-container,

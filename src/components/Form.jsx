@@ -3,6 +3,7 @@ import "../styles/styles.css";
 import "../styles/modern-normalize.css";
 import expandIcon from "../assets/expand-icon.svg";
 import minimizeIcon from "../assets/minimize-icon.svg";
+import editIcon from "../assets/edit-icon.svg";
 
 export default function Form({ onFormSubmit, deleteData }) {
   return (
@@ -478,7 +479,7 @@ function Experience({ onFormSubmit, deleteExp }) {
                     setEditFlag("individual");
                   }}
                 >
-                  EDIT
+                  <img src={editIcon} alt="Edit button" className="edit-icon" />
                 </button>
               ) : null}
             </div>
@@ -647,7 +648,11 @@ function Project({ onFormSubmit, deleteProj }) {
                       proj.editing = true;
                     }}
                   >
-                    EDIT
+                    <img
+                      src={editIcon}
+                      alt="Edit button"
+                      className="edit-icon"
+                    />
                   </button>
                 ) : null}
               </div>
