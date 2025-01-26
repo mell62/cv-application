@@ -87,7 +87,9 @@ function About({ data }) {
 
 function Education({ data }) {
   return (
-    Object.keys(data.education).length > 0 && (
+    Object.entries(data.education).find(
+      (arr) => arr[0] === "school" && arr[1] !== ""
+    ) && (
       <div className="education-cv">
         <h1 className="education-header">Education</h1>
         <div className="education-info-cv">
@@ -186,7 +188,7 @@ function Project({ data }) {
 
 function Skills({ data }) {
   return (
-    data.skills.length > 0 && (
+    data.skills.filter((skill) => skill.skillName).length > 0 && (
       <div className="skills-cv">
         <h1 className="skills-header">Skills</h1>
         <div className="skills-info-cv">
