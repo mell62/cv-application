@@ -734,7 +734,7 @@ function Skills({ onFormSubmit, deleteSkill }) {
               <div className="skills-input-sub-container">
                 <div className="individual-input-container">
                   <label htmlFor={`skill-${index + 1}-input`}>
-                    skill {index + 1}
+                    Skill {index + 1}
                   </label>
                   <div className="skill-name-input-container">
                     <input
