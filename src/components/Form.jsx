@@ -732,8 +732,12 @@ function Skills({ onFormSubmit, deleteSkill }) {
         }}
       >
         <div
-          className={`skills-input-super-container no-display ${
-            editFlag && skills.length > 0 ? "show-display" : ""
+          className={`skills-input-super-container ${
+            editFlag && skills.length > 0
+              ? "form-show"
+              : skills.length === 0
+              ? "no-display"
+              : "form-hide"
           }`}
         >
           {skills.map((skill, index) => (
