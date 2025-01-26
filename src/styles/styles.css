@@ -365,7 +365,6 @@ h3 {
   padding: 2rem 0 2rem 0;
   background-color: #586994;
   color: #fffbfc;
-  min-height: 12rem;
   font-family: Calibri, sans-serif;
 }
 
@@ -411,7 +410,7 @@ h3 {
 
 .main-info-cv h1 {
   font-family: Helvetica, sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 }
 
 .about-cv,
@@ -436,6 +435,11 @@ h3 {
 .education-info-cv {
   display: flex;
   gap: 2rem;
+}
+
+.education-main-info-cv,
+.experience-company-details-column {
+  width: 18rem;
 }
 
 .school-name-cv,
