@@ -148,16 +148,25 @@ function Experience({ data }) {
                 <div key={exp.id} className="experience-container-cv">
                   <div className="experience-main-info-cv">
                     <div className="experience-main-info-cv-row">
-                      <div className="company-name-cv">{exp.company}</div>
+                      <div className="experience-company-details-column">
+                        <div className="company-name-cv">{exp.company}</div>
+                        <div className="company-position-cv">
+                          {exp.position}
+                        </div>
+                      </div>
                       <div className="experience-timeline-info-container-cv">
                         <div className="experience-timeline-info-cv">
-                          <div className="start-date-cv">{exp.startDate}</div>
+                          <div className="start-date-cv">
+                            {exp.startDate.slice(0, 7)}
+                          </div>
                           {exp.startDate &&
                             (exp.endDate || exp.isPresentWork) && (
                               <span> - </span>
                             )}
                           <div className="end-date-cv">
-                            {exp.isPresentWork ? "Present" : exp.endDate}
+                            {exp.isPresentWork
+                              ? "Present"
+                              : exp.endDate.slice(0, 7)}
                           </div>
                         </div>
                         <div className="experience-duration">
@@ -165,7 +174,6 @@ function Experience({ data }) {
                         </div>
                       </div>
                     </div>
-                    <div className="company-position-cv">{exp.position}</div>
                     <div className="responsibilities-container">
                       {exp.responsibilities.split(".").map(
                         (resp) =>

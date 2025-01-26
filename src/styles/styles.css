@@ -437,6 +437,18 @@ h3 {
   font-weight: bold;
 }
 
+.experience-main-info-cv {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.experience-company-details-column {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 .experience-timeline-info-container-cv {
   padding-left: 2rem;
   border-left: 0.1rem solid black;
