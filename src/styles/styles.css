@@ -243,6 +243,12 @@ h3 {
   line-height: 0;
 }
 
+.skills-input-super-container {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
 .education-input-sub-container,
 .experience-input-sub-container,
 .project-input-sub-container,
