@@ -117,8 +117,16 @@ function Education({ data }) {
 
 function Experience({ data }) {
   const getExperienceDuration = (startDateString, endDateString) => {
-    const startDate = new Date(startDateString);
-    const endDate = new Date(endDateString);
+    let startDate;
+    let endDate;
+
+    if (endDateString === "Present") {
+      endDate = new Date();
+    } else {
+      endDate = new Date(endDateString);
+    }
+
+    startDate = new Date(startDateString);
 
     let months = endDate.getMonth() - startDate.getMonth();
     let years = endDate.getFullYear() - startDate.getFullYear();
@@ -131,11 +139,15 @@ function Experience({ data }) {
     const periodYears = `${years} years`;
     const periodMonths = `${months} months`;
 
-    if (months > 0) {
-      return periodYears + " " + periodMonths;
+    if (years === 0) {
+      return periodMonths;
     }
 
-    return periodYears;
+    if (months === 0) {
+      return periodYears;
+    }
+
+    return periodYears + " " + periodMonths;
   };
 
   return (
@@ -154,25 +166,38 @@ function Experience({ data }) {
                           {exp.position}
                         </div>
                       </div>
-                      <div className="experience-timeline-info-container-cv">
-                        <div className="experience-timeline-info-cv">
-                          <div className="start-date-cv">
-                            {exp.startDate.slice(0, 7)}
+                      {exp.startDate && (exp.endDate || exp.isPresentWork) && (
+                        <div className="experience-timeline-info-container-cv">
+                          <div className="experience-timeline-info-cv">
+                            <div className="start-date-cv">
+                              {exp.startDate.slice(0, 7)}
+                            </div>
+                            {exp.startDate &&
+                              (exp.endDate || exp.isPresentWork) && (
+                                <span> - </span>
+                              )}
+                            <div className="end-date-cv">
+                              {exp.isPresentWork
+                                ? "Present"
+                                : exp.endDate.slice(0, 7)}
+                            </div>
                           </div>
                           {exp.startDate &&
                             (exp.endDate || exp.isPresentWork) && (
-                              <span> - </span>
+                              <div className="experience-duration">
+                                {exp.isPresentWork
+                                  ? getExperienceDuration(
+                                      exp.startDate,
+                                      "Present"
+                                    )
+                                  : getExperienceDuration(
+                                      exp.startDate,
+                                      exp.endDate
+                                    )}
+                              </div>
                             )}
-                          <div className="end-date-cv">
-                            {exp.isPresentWork
-                              ? "Present"
-                              : exp.endDate.slice(0, 7)}
-                          </div>
                         </div>
-                        <div className="experience-duration">
-                          {getExperienceDuration(exp.startDate, exp.endDate)}
-                        </div>
-                      </div>
+                      )}
                     </div>
                     <div className="responsibilities-container">
                       {exp.responsibilities.split(".").map(
