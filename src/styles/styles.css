@@ -133,7 +133,9 @@ h3 {
 }
 
 .project-form-super-container,
-.project-overview-super-container {
+.project-overview-super-container,
+.experience-form-super-container,
+.experience-overview-super-container {
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -210,7 +212,8 @@ h3 {
 .about-form,
 .education-form,
 .skills-form,
-.project-form-super-container {
+.project-form-super-container,
+.experience-form-super-container {
   overflow: hidden;
   margin-bottom: -2rem;
 }
@@ -289,7 +292,8 @@ h3 {
   width: 1.1rem;
 }
 
-.project-form {
+.project-form,
+.experience-form {
   margin-bottom: 2rem;
 }
 

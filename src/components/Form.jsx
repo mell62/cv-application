@@ -10,7 +10,7 @@ export default function Form({ onFormSubmit, deleteData }) {
       <GeneralInfo onFormSubmit={onFormSubmit} />
       <About onFormSubmit={onFormSubmit} />
       <Education onFormSubmit={onFormSubmit} />
-      <Experience onFormSubmit={onFormSubmit} deleteExp={deleteData} />
+      <ExperienceRep onFormSubmit={onFormSubmit} deleteExp={deleteData} />
       <Project onFormSubmit={onFormSubmit} deleteProj={deleteData} />
       <Skills onFormSubmit={onFormSubmit} deleteSkill={deleteData} />
     </>
@@ -491,6 +491,240 @@ function Experience({ onFormSubmit, deleteExp }) {
   );
 }
 
+function ExperienceRep({ onFormSubmit, deleteExp }) {
+  const [experience, setExperience] = useState([]);
+  const [editFlag, setEditFlag] = useState(false);
+
+  const overviewEdit = editFlag === "overview";
+  const individualEdit = editFlag === "individual";
+
+  const addExperienceInput = () => {
+    setExperience((prevExperience) => [
+      ...prevExperience,
+      {
+        id: prevExperience.length + 1,
+        editing: true,
+        company: "",
+        position: "",
+        responsibilities: "",
+        startDate: "",
+        endDate: "",
+        isPresentWork: false,
+      },
+    ]);
+    setEditFlag("individual");
+  };
+
+  const updateExperience = (id, field, newExperience) => {
+    setExperience((prevExperience) =>
+      prevExperience.map((item) =>
+        item.id === id ? { ...item, [field]: newExperience } : item
+      )
+    );
+  };
+
+  const deleteExperience = (attribute, id) => {
+    setExperience((prevExp) =>
+      prevExp
+        .filter((exp) => exp.id !== id)
+        .map((exp, index) => ({
+          ...exp,
+          id: index + 1,
+        }))
+    );
+    deleteExp(attribute, id);
+    setEditFlag("overview");
+  };
+
+  return (
+    <div className="experience-form-container">
+      <div className="experience-form-header">
+        <h1>Professional Experience</h1>
+        <button
+          className="expand-btn"
+          onClick={() => {
+            editFlag ? setEditFlag(false) : setEditFlag("overview");
+          }}
+        >
+          {editFlag ? (
+            <img src={minimizeIcon} alt="Minimize card button" />
+          ) : (
+            <img src={expandIcon} alt="Expand card button" />
+          )}
+        </button>
+      </div>
+      <div className="experience-form-super-container">
+        {experience
+          .filter((item) => item.editing === true)
+          .map((item) => (
+            <form
+              action=""
+              key={item.id}
+              className={`experience-form ${
+                individualEdit ? "show-display" : "no-display"
+              }`}
+              onSubmit={(e) => {
+                e.preventDefault();
+                onFormSubmit((prevData) => ({ ...prevData, experience }));
+                item.editing = false;
+                setEditFlag("overview");
+              }}
+            >
+              <div className="experience-input-container">
+                <div className="experience-input-sub-container">
+                  <div className="individual-input-container">
+                    <label htmlFor="company-name-input">Company Name</label>
+                    <div className="company-name-input-container">
+                      <input
+                        type="text"
+                        id="company-name-input"
+                        className="experience-form-input"
+                        value={item.company}
+                        required={true}
+                        onChange={(e) =>
+                          updateExperience(item.id, "company", e.target.value)
+                        }
+                      />
+                    </div>
+                  </div>
+                  <div className="individual-input-container">
+                    <label htmlFor="company-position-input">Position</label>
+                    <div className="company-position-input-container">
+                      <input
+                        type="text"
+                        id="company-position-input"
+                        className="experience-form-input"
+                        value={item.position}
+                        onChange={(e) =>
+                          updateExperience(item.id, "position", e.target.value)
+                        }
+                      />
+                    </div>
+                  </div>
+                  <div className="individual-input-container">
+                    <label htmlFor="company-responsibilities-input">
+                      Responsibilities
+                    </label>
+                    <div className="company-responsibilities-input-container">
+                      <textarea
+                        id="company-responsibilities-input"
+                        value={item.responsibilities}
+                        className="experience-form-input"
+                        onChange={(e) =>
+                          updateExperience(
+                            item.id,
+                            "responsibilities",
+                            e.target.value
+                          )
+                        }
+                      />
+                    </div>
+                  </div>
+                  <div className="individual-input-container">
+                    <label htmlFor="company-start-date-input">Start Date</label>
+                    <div className="company-start-date-input-container">
+                      <input
+                        type="date"
+                        id="company-start-date-input"
+                        max={new Date().toISOString().split("T")[0]}
+                        className="experience-form-input"
+                        value={item.startDate}
+                        onChange={(e) =>
+                          updateExperience(item.id, "startDate", e.target.value)
+                        }
+                      />
+                    </div>
+                  </div>
+                  <div className="individual-input-container">
+                    <label htmlFor="company-end-date-input">End Date</label>
+                    <div className="company-end-date-input-container end-date-input-container">
+                      <input
+                        type="date"
+                        id="company-end-date-input"
+                        max={new Date().toISOString().split("T")[0]}
+                        className="experience-form-input"
+                        value={item.endDate}
+                        onChange={(e) =>
+                          updateExperience(item.id, "endDate", e.target.value)
+                        }
+                      />
+                      <div className="present-checkbox-container">
+                        <input
+                          type="checkbox"
+                          id="present-experience"
+                          checked={item.isPresentWork}
+                          className="present-checkbox"
+                          onChange={() => {}}
+                          onClick={() =>
+                            updateExperience(
+                              item.id,
+                              "isPresentWork",
+                              !item.isPresentWork
+                            )
+                          }
+                        />
+                        <label htmlFor="present-experience">Current</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="experience-individual-btns-container">
+                  <button
+                    type="button"
+                    onClick={() => deleteExperience("experience", item.id)}
+                    className="delete-btn"
+                  >
+                    DELETE
+                  </button>
+                  <button type="submit" className="submit-btn">
+                    SAVE
+                  </button>
+                </div>
+              </div>
+            </form>
+          ))}
+        <div
+          className={`experience-overview-super-container ${
+            experience.filter((exp) => exp.company).length === 0
+              ? "no-display"
+              : overviewEdit
+              ? "form-show"
+              : individualEdit
+              ? "no-display"
+              : "form-hide"
+          }`}
+        >
+          {experience.map((item) => (
+            <div key={item.id} className="experience-overview-container">
+              <div className="company-name">{item.company}</div>
+              {item.company ? (
+                <button
+                  className="edit-btn"
+                  onClick={() => {
+                    item.editing = true;
+                    setEditFlag("individual");
+                  }}
+                >
+                  EDIT
+                </button>
+              ) : null}
+            </div>
+          ))}
+        </div>
+        <div
+          className={`add-experience-btn-container form-hide ${
+            overviewEdit ? "form-show" : individualEdit ? "no-display" : ""
+          }`}
+        >
+          <button onClick={addExperienceInput} className="add-experience-btn">
+            ADD EXPERIENCE
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function Project({ onFormSubmit, deleteProj }) {
   const [project, setProject] = useState([]);
   const [editFlag, setEditFlag] = useState(false);
@@ -607,10 +841,10 @@ function Project({ onFormSubmit, deleteProj }) {
                     className="delete-btn"
                     onClick={() => deleteProject("project", proj.id)}
                   >
-                    Delete
+                    DELETE
                   </button>
                   <button type="submit" className="submit-btn">
-                    Save
+                    SAVE
                   </button>
                 </div>
               </div>
@@ -640,7 +874,7 @@ function Project({ onFormSubmit, deleteProj }) {
                       proj.editing = true;
                     }}
                   >
-                    Edit
+                    EDIT
                   </button>
                 ) : null}
               </div>
@@ -652,7 +886,7 @@ function Project({ onFormSubmit, deleteProj }) {
           } `}
         >
           <button onClick={addProject} className="add-project-btn">
-            Add Project
+            ADD PROJECT
           </button>
         </div>
       </div>
