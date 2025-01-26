@@ -549,100 +549,113 @@ function Project({ onFormSubmit, deleteProj }) {
           )}
         </button>
       </div>
-      {individualEdit
-        ? project
-            .filter((proj) => proj.editing === true)
-            .map((proj) => (
-              <form
-                key={proj.id}
-                action=""
-                className="project-form"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  onFormSubmit((prevData) => ({ ...prevData, project }));
-                  proj.editing = false;
-                  setEditFlag("overview");
-                }}
-              >
-                <div className="project-input-container">
-                  <div className="project-input-sub-container">
-                    <div className="individual-input-container">
-                      <label htmlFor="project-name-input">Name</label>
-                      <div className="project-name-input-container">
-                        <input
-                          type="text"
-                          id="project-name-input"
-                          value={proj.projectName}
-                          className="project-form-input"
-                          required={true}
-                          onChange={(e) =>
-                            updateProject(
-                              proj.id,
-                              "projectName",
-                              e.target.value
-                            )
-                          }
-                        />
-                      </div>
-                    </div>
-                    <div className="individual-input-container">
-                      <label htmlFor="project-summary-input">Summary</label>
-                      <div className="project-summary-input-container">
-                        <textarea
-                          id="project-summary-input"
-                          value={proj.projectSummary}
-                          className="project-form-input"
-                          onChange={(e) =>
-                            updateProject(
-                              proj.id,
-                              "projectSummary",
-                              e.target.value
-                            )
-                          }
-                        />
-                      </div>
+      <div className="project-form-super-container">
+        {project
+          .filter((proj) => proj.editing === true)
+          .map((proj) => (
+            <form
+              key={proj.id}
+              action=""
+              className={`project-form ${
+                individualEdit ? "show-display" : "no-display"
+              }`}
+              onSubmit={(e) => {
+                e.preventDefault();
+                onFormSubmit((prevData) => ({ ...prevData, project }));
+                proj.editing = false;
+                setEditFlag("overview");
+              }}
+            >
+              <div className="project-input-container">
+                <div className="project-input-sub-container">
+                  <div className="individual-input-container">
+                    <label htmlFor="project-name-input">Name</label>
+                    <div className="project-name-input-container">
+                      <input
+                        type="text"
+                        id="project-name-input"
+                        value={proj.projectName}
+                        className="project-form-input"
+                        required={true}
+                        onChange={(e) =>
+                          updateProject(proj.id, "projectName", e.target.value)
+                        }
+                      />
                     </div>
                   </div>
-                  <div className="project-individual-btns-container">
-                    <button
-                      type="button"
-                      className="delete-btn"
-                      onClick={() => deleteProject("project", proj.id)}
-                    >
-                      Delete
-                    </button>
-                    <button type="submit" className="submit-btn">
-                      Save
-                    </button>
+                  <div className="individual-input-container">
+                    <label htmlFor="project-summary-input">Summary</label>
+                    <div className="project-summary-input-container">
+                      <textarea
+                        id="project-summary-input"
+                        value={proj.projectSummary}
+                        className="project-form-input"
+                        onChange={(e) =>
+                          updateProject(
+                            proj.id,
+                            "projectSummary",
+                            e.target.value
+                          )
+                        }
+                      />
+                    </div>
                   </div>
                 </div>
-              </form>
-            ))
-        : overviewEdit
-        ? project.map((proj) => (
-            <div key={proj.id} className="project-overview-container">
-              <div className="project-name">{proj.projectName}</div>
-              {proj.projectName ? (
-                <button
-                  className="edit-btn"
-                  onClick={() => {
-                    setEditFlag("individual");
-                    proj.editing = true;
-                  }}
-                >
-                  Edit
-                </button>
-              ) : null}
-            </div>
-          ))
-        : null}
-      {overviewEdit ? (
-        <div className="add-project-btn-container">
+                <div className="project-individual-btns-container">
+                  <button
+                    type="button"
+                    className="delete-btn"
+                    onClick={() => deleteProject("project", proj.id)}
+                  >
+                    Delete
+                  </button>
+                  <button type="submit" className="submit-btn">
+                    Save
+                  </button>
+                </div>
+              </div>
+            </form>
+          ))}
+        <div
+          className={`project-overview-super-container ${
+            project.filter((proj) => proj.projectName).length === 0
+              ? "no-display"
+              : overviewEdit
+              ? "form-show"
+              : individualEdit
+              ? "no-display"
+              : "form-hide"
+          }`}
+        >
+          {project
+            .filter((proj) => proj.projectName)
+            .map((proj) => (
+              <div key={proj.id} className="project-overview-container">
+                <div className="project-name">{proj.projectName}</div>
+                {proj.projectName ? (
+                  <button
+                    className="edit-btn"
+                    onClick={() => {
+                      setEditFlag("individual");
+                      proj.editing = true;
+                    }}
+                  >
+                    Edit
+                  </button>
+                ) : null}
+              </div>
+            ))}
+        </div>
+        <div
+          className={`add-project-btn-container form-hide ${
+            overviewEdit ? "form-show" : individualEdit ? "no-display" : ""
+          } `}
+        >
           <button onClick={addProject} className="add-project-btn">
             Add Project
           </button>
         </div>
-      ) : null}
+      </div>
     </div>
   );
 }

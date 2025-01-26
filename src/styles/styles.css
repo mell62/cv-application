@@ -132,6 +132,13 @@ h3 {
   border-radius: 0.5rem;
 }
 
+.project-form-super-container,
+.project-overview-super-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
 .about-form-header,
 .education-form-header,
 .experience-form-header,
@@ -196,9 +203,14 @@ h3 {
   display: block;
 }
 
+.show-flex-display {
+  display: flex;
+}
+
 .about-form,
 .education-form,
-.skills-form {
+.skills-form,
+.project-form-super-container {
   overflow: hidden;
   margin-bottom: -2rem;
 }
@@ -275,6 +287,10 @@ h3 {
   background-size: cover;
   height: 1.1rem;
   width: 1.1rem;
+}
+
+.project-form {
+  margin-bottom: 2rem;
 }
 
 .experience-overview-container,
