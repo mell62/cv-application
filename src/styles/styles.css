@@ -437,8 +437,21 @@ h3 {
   font-weight: bold;
 }
 
-.education-timeline-info-cv,
+.experience-timeline-info-container-cv {
+  padding-left: 2rem;
+  border-left: 0.1rem solid black;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 .experience-timeline-info-cv {
+  display: flex;
+  gap: 0.3rem;
+  height: max-content;
+}
+
+.education-timeline-info-cv {
   display: flex;
   gap: 0.3rem;
   border-left: 0.1rem solid black;

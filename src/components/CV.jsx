@@ -116,6 +116,28 @@ function Education({ data }) {
 }
 
 function Experience({ data }) {
+  const getExperienceDuration = (startDateString, endDateString) => {
+    const startDate = new Date(startDateString);
+    const endDate = new Date(endDateString);
+
+    let months = endDate.getMonth() - startDate.getMonth();
+    let years = endDate.getFullYear() - startDate.getFullYear();
+
+    if (months < 0) {
+      years -= 1;
+      months += 12;
+    }
+
+    const periodYears = `${years} years`;
+    const periodMonths = `${months} months`;
+
+    if (months > 0) {
+      return periodYears + " " + periodMonths;
+    }
+
+    return periodYears;
+  };
+
   return (
     data.experience.length > 0 && (
       <div className="experience-cv">
@@ -127,14 +149,19 @@ function Experience({ data }) {
                   <div className="experience-main-info-cv">
                     <div className="experience-main-info-cv-row">
                       <div className="company-name-cv">{exp.company}</div>
-                      <div className="experience-timeline-info-cv">
-                        <div className="start-date-cv">{exp.startDate}</div>
-                        {exp.startDate &&
-                          (exp.endDate || exp.isPresentWork) && (
-                            <span> - </span>
-                          )}
-                        <div className="end-date-cv">
-                          {exp.isPresentWork ? "Present" : exp.endDate}
+                      <div className="experience-timeline-info-container-cv">
+                        <div className="experience-timeline-info-cv">
+                          <div className="start-date-cv">{exp.startDate}</div>
+                          {exp.startDate &&
+                            (exp.endDate || exp.isPresentWork) && (
+                              <span> - </span>
+                            )}
+                          <div className="end-date-cv">
+                            {exp.isPresentWork ? "Present" : exp.endDate}
+                          </div>
+                        </div>
+                        <div className="experience-duration">
+                          {getExperienceDuration(exp.startDate, exp.endDate)}
                         </div>
                       </div>
                     </div>
