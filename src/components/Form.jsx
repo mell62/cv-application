@@ -685,7 +685,7 @@ function Skills({ onFormSubmit, deleteSkill }) {
         <button
           className="expand-btn"
           onClick={() => {
-            editFlag ? setEditFlag(false) : setEditFlag("overview");
+            editFlag ? setEditFlag(false) : setEditFlag(true);
           }}
         >
           {editFlag ? (
@@ -695,17 +695,21 @@ function Skills({ onFormSubmit, deleteSkill }) {
           )}
         </button>
       </div>
-      {editFlag ? (
-        <form
-          action=""
-          className="skills-form"
-          onSubmit={(e) => {
-            e.preventDefault();
-            onFormSubmit((prevData) => ({
-              ...prevData,
-              skills: skills,
-            }));
-          }}
+      <form
+        action=""
+        className="skills-form"
+        onSubmit={(e) => {
+          e.preventDefault();
+          onFormSubmit((prevData) => ({
+            ...prevData,
+            skills: skills,
+          }));
+        }}
+      >
+        <div
+          className={`skills-input-super-container no-display ${
+            editFlag && skills.length > 0 ? "show-display" : ""
+          }`}
         >
           {skills.map((skill, index) => (
             <div key={skill.id} className="skills-input-container">
@@ -736,22 +740,24 @@ function Skills({ onFormSubmit, deleteSkill }) {
               </div>
             </div>
           ))}
-          <div className="skills-overview-btns-container">
-            {skills.length < 8 && (
-              <button
-                type="button"
-                className="add-skill-btn"
-                onClick={addSkill}
-              >
-                Add Skill
-              </button>
-            )}
+        </div>
+        <div
+          className={`skills-overview-btns-container form-hide ${
+            editFlag ? "form-show" : ""
+          }`}
+        >
+          {skills.length < 8 && (
+            <button type="button" className="add-skill-btn" onClick={addSkill}>
+              Add Skill
+            </button>
+          )}
+          {skills.length > 0 && (
             <button type="submit" className="submit-btn">
               Save
             </button>
-          </div>
-        </form>
-      ) : null}
+          )}
+        </div>
+      </form>
     </div>
   );
 }
