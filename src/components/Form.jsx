@@ -8,8 +8,10 @@ export default function Form({ onFormSubmit, deleteData }) {
   return (
     <>
       <GeneralInfo onFormSubmit={onFormSubmit} />
-      <About onFormSubmit={onFormSubmit} />
-      <Education onFormSubmit={onFormSubmit} />
+      <div className="form-about-education-row">
+        <About onFormSubmit={onFormSubmit} />
+        <Education onFormSubmit={onFormSubmit} />
+      </div>
       <Experience onFormSubmit={onFormSubmit} deleteExp={deleteData} />
       <Project onFormSubmit={onFormSubmit} deleteProj={deleteData} />
       <Skills onFormSubmit={onFormSubmit} deleteSkill={deleteData} />

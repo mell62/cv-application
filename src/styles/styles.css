@@ -92,6 +92,12 @@ h3 {
   align-items: center;
 }
 
+.form-about-education-row {
+  display: flex;
+  gap: 2rem;
+  align-items: start;
+}
+
 .individual-input-container {
   display: flex;
   flex-direction: column;
