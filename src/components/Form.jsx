@@ -159,6 +159,43 @@ function Education({ onFormSubmit }) {
   });
   const [editFlag, setEditFlag] = useState(false);
 
+  const checkStartDateValidity = (startDateString) => {
+    const startDate = new Date(startDateString);
+    const startDateEle = document.querySelector(".education-start-date");
+    const endDateEle = document.querySelector(".education-end-date");
+
+    if (endDateEle.value) {
+      const endDate = new Date(endDateEle.value);
+      if (endDate < startDate) {
+        startDateEle.setCustomValidity(
+          "Start date cannot be later than end date"
+        );
+      } else {
+        startDateEle.setCustomValidity("");
+      }
+    } else {
+      startDateEle.setCustomValidity("");
+    }
+  };
+
+  const checkEndDateValidity = (endDateString) => {
+    const endDate = new Date(endDateString);
+    const startDateEle = document.querySelector(".education-start-date");
+
+    if (startDateEle.value) {
+      const startDate = new Date(startDateEle.value);
+      if (endDate < startDate) {
+        startDateEle.setCustomValidity(
+          "Start date cannot be later than end date"
+        );
+      } else {
+        startDateEle.setCustomValidity("");
+      }
+    } else {
+      startDateEle.setCustomValidity("");
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     onFormSubmit((prevData) => ({ ...prevData, education }));
@@ -194,6 +231,7 @@ function Education({ onFormSubmit }) {
                   type="text"
                   id="school"
                   className="education-form-input"
+                  required={true}
                   onChange={(e) =>
                     setEducation({ ...education, school: e.target.value })
                   }
@@ -219,11 +257,12 @@ function Education({ onFormSubmit }) {
                 <input
                   type="date"
                   id="start-date"
-                  className="education-form-input"
+                  className="education-form-input education-start-date"
                   max={new Date().toISOString().split("T")[0]}
-                  onChange={(e) =>
-                    setEducation({ ...education, startDate: e.target.value })
-                  }
+                  onChange={(e) => {
+                    setEducation({ ...education, startDate: e.target.value });
+                    checkStartDateValidity(e.target.value);
+                  }}
                 />
               </div>
             </div>
@@ -233,11 +272,12 @@ function Education({ onFormSubmit }) {
                 <input
                   type="date"
                   id="end-date"
-                  className="education-form-input"
+                  className="education-form-input education-end-date"
                   max={new Date().toISOString().split("T")[0]}
-                  onChange={(e) =>
-                    setEducation({ ...education, endDate: e.target.value })
-                  }
+                  onChange={(e) => {
+                    setEducation({ ...education, endDate: e.target.value });
+                    checkEndDateValidity(e.target.value);
+                  }}
                 />
                 <div className="present-checkbox-container">
                   <input
