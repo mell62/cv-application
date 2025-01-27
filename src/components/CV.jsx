@@ -26,48 +26,49 @@ function GeneralInfo({ data }) {
       <h1 className="full-name-cv">{data.fullName}</h1>
       <div className="general-sub">
         <div className="general-sub-1">
-          <div className="email-cv-container">
-            {data.email ? (
+          {data.email ? (
+            <div className="email-cv-container">
               <img
                 src={emailIcon}
                 alt="Email Icon"
                 className="general-cv-icon"
               />
-            ) : null}
-            <div className="email-cv">{data.email}</div>
-          </div>
-          <div className="phone-cv-container">
-            {data.phone ? (
+
+              <div className="email-cv">{data.email}</div>
+            </div>
+          ) : null}
+          {data.phone ? (
+            <div className="phone-cv-container">
               <img
                 src={phoneIcon}
                 alt="Phone Icon"
                 className="general-cv-icon"
               />
-            ) : null}
-            <div className="phone-cv">{data.phone}</div>
-          </div>
+              <div className="phone-cv">{data.phone}</div>
+            </div>
+          ) : null}
         </div>
         <div className="general-sub-2">
-          <div className="linkedin-cv-container">
-            {data.linkedin ? (
+          {data.linkedin ? (
+            <div className="linkedin-cv-container">
               <img
                 src={linkedinIcon}
                 alt="Linkedin Icon"
                 className="general-cv-icon"
               />
-            ) : null}
-            <div className="linkedin-cv">{data.linkedin}</div>
-          </div>
-          <div className="github-cv-container">
-            {data.github ? (
+              <div className="linkedin-cv">{data.linkedin}</div>
+            </div>
+          ) : null}
+          {data.github ? (
+            <div className="github-cv-container">
               <img
                 src={githubIcon}
                 alt="Github Icon"
                 className="general-cv-icon"
               />
-            ) : null}
-            <div className="github-cv">{data.github}</div>
-          </div>
+              <div className="github-cv">{data.github}</div>
+            </div>
+          ) : null}
         </div>
       </div>
     </div>
