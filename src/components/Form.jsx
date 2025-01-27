@@ -196,6 +196,14 @@ function Education({ onFormSubmit }) {
     }
   };
 
+  const setPresentDate = () => {
+    const endDateEle = document.querySelector(".education-end-date");
+    const todayDate = new Date();
+    const todayDateStr = todayDate.toISOString().split("T")[0];
+
+    endDateEle.value = todayDateStr;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     onFormSubmit((prevData) => ({ ...prevData, education }));
@@ -284,12 +292,13 @@ function Education({ onFormSubmit }) {
                     type="checkbox"
                     id="present-education"
                     className="present-checkbox"
-                    onClick={() =>
+                    onClick={() => {
                       setEducation({
                         ...education,
                         isPresentEducation: !education.isPresentEducation,
-                      })
-                    }
+                      });
+                      setPresentDate();
+                    }}
                   />
                   <label htmlFor="present-education">Current</label>
                 </div>
