@@ -218,6 +218,10 @@ h3 {
   align-self: center;
 }
 
+.about-form-input {
+  resize: none;
+}
+
 .expand-btn {
   background-color: transparent;
   padding: 0;
@@ -395,6 +399,7 @@ h3 {
 .general-sub-2 {
   display: flex;
   justify-content: center;
+  gap: 1rem;
 }
 
 .email-cv-container,
@@ -405,7 +410,8 @@ h3 {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  width: 12rem;
+  width: 16rem;
+  word-break: break-all;
 }
 
 .general-cv-icon {
@@ -442,6 +448,11 @@ h3 {
 .skills-cv > :not(h1) {
   font-family: Calibri, sans-serif;
   font-size: 1.1rem;
+}
+
+.about-info-cv {
+  word-wrap: break-word;
+  hyphens: auto;
 }
 
 .education-info-cv {

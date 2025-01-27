@@ -47,6 +47,7 @@ function GeneralInfo({ onFormSubmit }) {
               type="text"
               id="full-name"
               className="general-form-input"
+              maxLength={30}
               onChange={(e) => setFullName(e.target.value)}
             />
           </div>
@@ -58,6 +59,7 @@ function GeneralInfo({ onFormSubmit }) {
               type="email"
               id="email"
               className="general-form-input"
+              maxLength={30}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
@@ -69,6 +71,7 @@ function GeneralInfo({ onFormSubmit }) {
               type="tel"
               id="phone"
               className="general-form-input"
+              maxLength={20}
               onChange={(e) => setPhone(e.target.value)}
             />
           </div>
@@ -80,6 +83,7 @@ function GeneralInfo({ onFormSubmit }) {
               type="text"
               id="linkedin"
               className="general-form-input"
+              maxLength={30}
               onChange={(e) => setLinkedin(e.target.value)}
             />
           </div>
@@ -91,6 +95,7 @@ function GeneralInfo({ onFormSubmit }) {
               type="text"
               id="github"
               className="general-form-input"
+              maxLength={30}
               onChange={(e) => setGithub(e.target.value)}
             />
           </div>
@@ -138,6 +143,7 @@ function About({ onFormSubmit }) {
           <textarea
             id="about"
             className="about-form-input"
+            maxLength={200}
             onChange={(e) => setAbout(e.target.value)}
           ></textarea>
           <button type="submit" className="submit-btn">
