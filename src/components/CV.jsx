@@ -98,7 +98,9 @@ function Education({ data }) {
             <div className="degree-cv">{data.education.degree}</div>
           </div>
           <div className="education-timeline-info-cv">
-            <div className="start-date-cv">{data.education.startDate}</div>
+            <div className="start-date-cv">
+              {data.education.startDate.slice(0, 7)}
+            </div>
             {data.education.startDate &&
               (data.education.endDate || data.education.isPresentEducation) && (
                 <span> - </span>
@@ -106,7 +108,7 @@ function Education({ data }) {
             <div className="end-date-cv">
               {data.education.isPresentEducation
                 ? "Present"
-                : data.education.endDate}
+                : data.education.endDate.slice(0, 7)}
             </div>
           </div>
         </div>
