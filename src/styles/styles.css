@@ -6,6 +6,12 @@
   --black: #1f1235;
 }
 
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   background-color: #f4f4f9;
   overflow-x: hidden;
@@ -74,6 +80,7 @@ h3 {
   font-family: "Zen Maru Gothic", sans-serif;
   font-weight: bold;
   color: black;
+  max-width: 60rem;
 }
 
 .form-section button {
@@ -203,6 +210,10 @@ h3 {
   justify-content: center;
 }
 
+.about-form-container {
+  max-width: 19rem;
+}
+
 .about-input-container .submit-btn {
   align-self: center;
 }
@@ -247,6 +258,7 @@ h3 {
   display: flex;
   gap: 1rem;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .present-checkbox-container {
@@ -521,4 +533,38 @@ h3 {
   column-gap: 4rem;
   row-gap: 1rem;
   flex-wrap: wrap;
+}
+
+@media (max-width: 1250px) {
+  #content {
+    flex-wrap: wrap;
+  }
+
+  .form-section {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 860px) {
+  .form-section {
+    max-width: 25rem;
+  }
+
+  .cv-sheet {
+    transform: scale(0.5);
+  }
+
+  .form-about-education-row {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 400px) {
+  .cv-sheet {
+    transform: scale(0.4);
+  }
+}
+
+.no-transform {
+  transform: none;
 }

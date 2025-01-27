@@ -62,7 +62,14 @@ const options = {
 
 downloadBtn.addEventListener("click", () => {
   const cvSheet = document.querySelector(".cv-sheet"); //query selector is here so that js gets enough time to select the element once react renders it
-  html2pdf().set(options).from(cvSheet).save();
+  cvSheet.classList.add("no-transform");
+  html2pdf()
+    .set(options)
+    .from(cvSheet)
+    .save()
+    .then(() => {
+      cvSheet.classList.remove("no-transform");
+    });
 });
 
 export default App;
