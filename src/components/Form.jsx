@@ -321,6 +321,49 @@ function Experience({ onFormSubmit, deleteExp }) {
   const overviewEdit = editFlag === "overview";
   const individualEdit = editFlag === "individual";
 
+  const checkStartDateValidity = (startDateString) => {
+    const startDate = new Date(startDateString);
+    const startDateEle = document.querySelector(".experience-start-date");
+    const endDateEle = document.querySelector(".experience-end-date");
+    const presentCheckbox = document.querySelector(
+      ".experience-present-checkbox"
+    );
+
+    if (endDateEle.value && !presentCheckbox.checked) {
+      const endDate = new Date(endDateEle.value);
+      if (endDate < startDate) {
+        startDateEle.setCustomValidity(
+          "Start date cannot be later than end date"
+        );
+      } else {
+        startDateEle.setCustomValidity("");
+      }
+    } else {
+      startDateEle.setCustomValidity("");
+    }
+  };
+
+  const checkEndDateValidity = (endDateString) => {
+    const endDate = new Date(endDateString);
+    const startDateEle = document.querySelector(".experience-start-date");
+    const presentCheckbox = document.querySelector(
+      ".experience-present-checkbox"
+    );
+
+    if (startDateEle.value && !presentCheckbox.checked) {
+      const startDate = new Date(startDateEle.value);
+      if (endDate < startDate) {
+        startDateEle.setCustomValidity(
+          "Start date cannot be later than end date"
+        );
+      } else {
+        startDateEle.setCustomValidity("");
+      }
+    } else {
+      startDateEle.setCustomValidity("");
+    }
+  };
+
   const addExperienceInput = () => {
     setExperience((prevExperience) => [
       ...prevExperience,
@@ -450,11 +493,16 @@ function Experience({ onFormSubmit, deleteExp }) {
                         type="date"
                         id="company-start-date-input"
                         max={new Date().toISOString().split("T")[0]}
-                        className="experience-form-input"
+                        className="experience-form-input experience-start-date"
                         value={item.startDate}
-                        onChange={(e) =>
-                          updateExperience(item.id, "startDate", e.target.value)
-                        }
+                        onChange={(e) => {
+                          updateExperience(
+                            item.id,
+                            "startDate",
+                            e.target.value
+                          );
+                          checkStartDateValidity(e.target.value);
+                        }}
                       />
                     </div>
                   </div>
@@ -465,26 +513,27 @@ function Experience({ onFormSubmit, deleteExp }) {
                         type="date"
                         id="company-end-date-input"
                         max={new Date().toISOString().split("T")[0]}
-                        className="experience-form-input"
+                        className="experience-form-input experience-end-date"
                         value={item.endDate}
-                        onChange={(e) =>
-                          updateExperience(item.id, "endDate", e.target.value)
-                        }
+                        onChange={(e) => {
+                          updateExperience(item.id, "endDate", e.target.value);
+                          checkEndDateValidity(e.target.value);
+                        }}
                       />
                       <div className="present-checkbox-container">
                         <input
                           type="checkbox"
                           id="present-experience"
                           checked={item.isPresentWork}
-                          className="present-checkbox"
+                          className="present-checkbox experience-present-checkbox"
                           onChange={() => {}}
-                          onClick={() =>
+                          onClick={() => {
                             updateExperience(
                               item.id,
                               "isPresentWork",
                               !item.isPresentWork
-                            )
-                          }
+                            );
+                          }}
                         />
                         <label htmlFor="present-experience">Current</label>
                       </div>
