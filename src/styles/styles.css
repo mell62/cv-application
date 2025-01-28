@@ -250,9 +250,20 @@ h3 {
 }
 
 .education-input-sub-container,
-.experience-input-sub-container,
 .project-input-sub-container,
 .skills-input-sub-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.experience-input-sub-container {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.experience-input-sub-container-column {
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
@@ -410,7 +421,7 @@ h3 {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  width: 16rem;
+  width: 18rem;
   word-break: break-all;
 }
 
@@ -451,14 +462,11 @@ h3 {
 }
 
 .about-info-cv,
-.education-main-info-cv,
-.experience-company-details-column {
-  word-wrap: break-word;
-  hyphens: auto;
-}
-
 .responsibilities-container,
-.project-summary-cv {
+.project-summary-cv,
+.education-main-info-cv,
+.experience-company-details-column,
+.skills-container-cv {
   word-wrap: break-word;
 }
 
@@ -470,6 +478,12 @@ h3 {
 .education-main-info-cv,
 .experience-company-details-column {
   width: 18rem;
+}
+
+.education-main-info-cv {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .school-name-cv,
@@ -532,6 +546,8 @@ h3 {
 
 .bullet-point {
   color: #586994;
+  display: inline-block;
+  min-height: 100%;
 }
 
 .project-info-cv {
@@ -548,9 +564,16 @@ h3 {
 
 .skills-info-cv {
   display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
   column-gap: 4rem;
   row-gap: 1rem;
-  flex-wrap: wrap;
+}
+
+.skills-container-cv {
+  width: 16rem;
+  display: flex;
+  gap: 0.5rem;
 }
 
 @media (max-width: 1250px) {

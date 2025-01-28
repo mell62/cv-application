@@ -83,7 +83,7 @@ function GeneralInfo({ onFormSubmit }) {
               type="text"
               id="linkedin"
               className="general-form-input"
-              maxLength={30}
+              maxLength={50}
               onChange={(e) => setLinkedin(e.target.value)}
             />
           </div>
@@ -95,7 +95,7 @@ function GeneralInfo({ onFormSubmit }) {
               type="text"
               id="github"
               className="general-form-input"
-              maxLength={30}
+              maxLength={50}
               onChange={(e) => setGithub(e.target.value)}
             />
           </div>
@@ -143,7 +143,8 @@ function About({ onFormSubmit }) {
           <textarea
             id="about"
             className="about-form-input"
-            maxLength={200}
+            maxLength={500}
+            rows={10}
             onChange={(e) => setAbout(e.target.value)}
           ></textarea>
           <button type="submit" className="submit-btn">
@@ -446,35 +447,100 @@ function Experience({ onFormSubmit, deleteExp }) {
             >
               <div className="experience-input-container">
                 <div className="experience-input-sub-container">
-                  <div className="individual-input-container">
-                    <label htmlFor="company-name-input">Company Name</label>
-                    <div className="company-name-input-container">
-                      <input
-                        type="text"
-                        id="company-name-input"
-                        className="experience-form-input"
-                        value={item.company}
-                        required={true}
-                        maxLength={50}
-                        onChange={(e) =>
-                          updateExperience(item.id, "company", e.target.value)
-                        }
-                      />
+                  <div className="experience-input-sub-container-column">
+                    <div className="individual-input-container">
+                      <label htmlFor="company-name-input">Company Name</label>
+                      <div className="company-name-input-container">
+                        <input
+                          type="text"
+                          id="company-name-input"
+                          className="experience-form-input"
+                          value={item.company}
+                          required={true}
+                          maxLength={50}
+                          onChange={(e) =>
+                            updateExperience(item.id, "company", e.target.value)
+                          }
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div className="individual-input-container">
-                    <label htmlFor="company-position-input">Position</label>
-                    <div className="company-position-input-container">
-                      <input
-                        type="text"
-                        id="company-position-input"
-                        className="experience-form-input"
-                        value={item.position}
-                        maxLength={50}
-                        onChange={(e) =>
-                          updateExperience(item.id, "position", e.target.value)
-                        }
-                      />
+                    <div className="individual-input-container">
+                      <label htmlFor="company-position-input">Position</label>
+                      <div className="company-position-input-container">
+                        <input
+                          type="text"
+                          id="company-position-input"
+                          className="experience-form-input"
+                          value={item.position}
+                          maxLength={50}
+                          onChange={(e) =>
+                            updateExperience(
+                              item.id,
+                              "position",
+                              e.target.value
+                            )
+                          }
+                        />
+                      </div>
+                    </div>
+                    <div className="individual-input-container">
+                      <label htmlFor="company-start-date-input">
+                        Start Date
+                      </label>
+                      <div className="company-start-date-input-container">
+                        <input
+                          type="date"
+                          id="company-start-date-input"
+                          max={new Date().toISOString().split("T")[0]}
+                          className="experience-form-input experience-start-date"
+                          value={item.startDate}
+                          onChange={(e) => {
+                            updateExperience(
+                              item.id,
+                              "startDate",
+                              e.target.value
+                            );
+                            checkStartDateValidity(e.target.value);
+                          }}
+                        />
+                      </div>
+                    </div>
+                    <div className="individual-input-container">
+                      <label htmlFor="company-end-date-input">End Date</label>
+                      <div className="company-end-date-input-container end-date-input-container">
+                        <input
+                          type="date"
+                          id="company-end-date-input"
+                          max={new Date().toISOString().split("T")[0]}
+                          className="experience-form-input experience-end-date"
+                          value={item.endDate}
+                          onChange={(e) => {
+                            updateExperience(
+                              item.id,
+                              "endDate",
+                              e.target.value
+                            );
+                            checkEndDateValidity(e.target.value);
+                          }}
+                        />
+                        <div className="present-checkbox-container">
+                          <input
+                            type="checkbox"
+                            id="present-experience"
+                            checked={item.isPresentWork}
+                            className="present-checkbox experience-present-checkbox"
+                            onChange={() => {}}
+                            onClick={() => {
+                              updateExperience(
+                                item.id,
+                                "isPresentWork",
+                                !item.isPresentWork
+                              );
+                            }}
+                          />
+                          <label htmlFor="present-experience">Current</label>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div className="individual-input-container">
@@ -486,7 +552,8 @@ function Experience({ onFormSubmit, deleteExp }) {
                         id="company-responsibilities-input"
                         value={item.responsibilities}
                         className="experience-form-input"
-                        maxLength={400}
+                        maxLength={600}
+                        rows={10}
                         onChange={(e) =>
                           updateExperience(
                             item.id,
@@ -495,59 +562,6 @@ function Experience({ onFormSubmit, deleteExp }) {
                           )
                         }
                       />
-                    </div>
-                  </div>
-                  <div className="individual-input-container">
-                    <label htmlFor="company-start-date-input">Start Date</label>
-                    <div className="company-start-date-input-container">
-                      <input
-                        type="date"
-                        id="company-start-date-input"
-                        max={new Date().toISOString().split("T")[0]}
-                        className="experience-form-input experience-start-date"
-                        value={item.startDate}
-                        onChange={(e) => {
-                          updateExperience(
-                            item.id,
-                            "startDate",
-                            e.target.value
-                          );
-                          checkStartDateValidity(e.target.value);
-                        }}
-                      />
-                    </div>
-                  </div>
-                  <div className="individual-input-container">
-                    <label htmlFor="company-end-date-input">End Date</label>
-                    <div className="company-end-date-input-container end-date-input-container">
-                      <input
-                        type="date"
-                        id="company-end-date-input"
-                        max={new Date().toISOString().split("T")[0]}
-                        className="experience-form-input experience-end-date"
-                        value={item.endDate}
-                        onChange={(e) => {
-                          updateExperience(item.id, "endDate", e.target.value);
-                          checkEndDateValidity(e.target.value);
-                        }}
-                      />
-                      <div className="present-checkbox-container">
-                        <input
-                          type="checkbox"
-                          id="present-experience"
-                          checked={item.isPresentWork}
-                          className="present-checkbox experience-present-checkbox"
-                          onChange={() => {}}
-                          onClick={() => {
-                            updateExperience(
-                              item.id,
-                              "isPresentWork",
-                              !item.isPresentWork
-                            );
-                          }}
-                        />
-                        <label htmlFor="present-experience">Current</label>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -864,7 +878,7 @@ function Skills({ onFormSubmit, deleteSkill }) {
                       id={`skill-${index + 1}-input`}
                       value={skill.skillName}
                       className="skills-form-input"
-                      maxLength={30}
+                      maxLength={50}
                       onChange={(e) => updateSkill(skill.id, e.target.value)}
                     />
                   </div>
