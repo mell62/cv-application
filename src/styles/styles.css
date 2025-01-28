@@ -450,9 +450,16 @@ h3 {
   font-size: 1.1rem;
 }
 
-.about-info-cv {
+.about-info-cv,
+.education-main-info-cv,
+.experience-company-details-column {
   word-wrap: break-word;
   hyphens: auto;
+}
+
+.responsibilities-container,
+.project-summary-cv {
+  word-wrap: break-word;
 }
 
 .education-info-cv {

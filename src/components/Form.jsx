@@ -246,6 +246,7 @@ function Education({ onFormSubmit }) {
                   id="school"
                   className="education-form-input"
                   required={true}
+                  maxLength={50}
                   onChange={(e) =>
                     setEducation({ ...education, school: e.target.value })
                   }
@@ -259,6 +260,7 @@ function Education({ onFormSubmit }) {
                   type="text"
                   id="degree"
                   className="education-form-input"
+                  maxLength={50}
                   onChange={(e) =>
                     setEducation({ ...education, degree: e.target.value })
                   }
@@ -453,6 +455,7 @@ function Experience({ onFormSubmit, deleteExp }) {
                         className="experience-form-input"
                         value={item.company}
                         required={true}
+                        maxLength={50}
                         onChange={(e) =>
                           updateExperience(item.id, "company", e.target.value)
                         }
@@ -467,6 +470,7 @@ function Experience({ onFormSubmit, deleteExp }) {
                         id="company-position-input"
                         className="experience-form-input"
                         value={item.position}
+                        maxLength={50}
                         onChange={(e) =>
                           updateExperience(item.id, "position", e.target.value)
                         }
@@ -482,6 +486,7 @@ function Experience({ onFormSubmit, deleteExp }) {
                         id="company-responsibilities-input"
                         value={item.responsibilities}
                         className="experience-form-input"
+                        maxLength={400}
                         onChange={(e) =>
                           updateExperience(
                             item.id,
@@ -689,6 +694,7 @@ function Project({ onFormSubmit, deleteProj }) {
                         value={proj.projectName}
                         className="project-form-input"
                         required={true}
+                        maxLength={40}
                         onChange={(e) =>
                           updateProject(proj.id, "projectName", e.target.value)
                         }
@@ -702,6 +708,7 @@ function Project({ onFormSubmit, deleteProj }) {
                         id="project-summary-input"
                         value={proj.projectSummary}
                         className="project-form-input"
+                        maxLength={200}
                         onChange={(e) =>
                           updateProject(
                             proj.id,
@@ -857,6 +864,7 @@ function Skills({ onFormSubmit, deleteSkill }) {
                       id={`skill-${index + 1}-input`}
                       value={skill.skillName}
                       className="skills-form-input"
+                      maxLength={30}
                       onChange={(e) => updateSkill(skill.id, e.target.value)}
                     />
                   </div>
