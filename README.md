@@ -14,7 +14,7 @@ Check it out :point_right:[here!](https://make-a-mark.netlify.app/):point_left:
 
 ## :tada: Achievements
 
-- **React** framework's powerful utility is harnessed to build the entire application through a component-based structure, while enjoying the power of UI flexibility alongside logic
+- **React** library's powerful utility is harnessed to build the entire application through a component-based structure, while enjoying the power of UI flexibility alongside logic
 - **Vite** is utilized for configuring React template for the project, while also lending its build tools for module bundling and minification for production
 - **Responsive design** and **user accessibility** have been prioritized in the implementation while ensuring a clean and seamless user interface
 
