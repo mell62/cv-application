@@ -172,10 +172,10 @@ function Experience({ data }) {
                   <div className="experience-main-info-cv">
                     <div className="experience-main-info-cv-row">
                       <div className="experience-company-details-column">
-                        <div className="company-name-cv">{exp.company}</div>
                         <div className="company-position-cv">
                           {exp.position}
                         </div>
+                        <div className="company-name-cv">{exp.company}</div>
                       </div>
                       {exp.startDate && (exp.endDate || exp.isPresentWork) && (
                         <div className="experience-timeline-info-container-cv">
