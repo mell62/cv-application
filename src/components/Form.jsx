@@ -721,8 +721,9 @@ function Project({ onFormSubmit, deleteProj }) {
                       <textarea
                         id="project-summary-input"
                         value={proj.projectSummary}
-                        className="project-form-input"
+                        className="project-form-input project-summary-input"
                         maxLength={200}
+                        rows={5}
                         onChange={(e) =>
                           updateProject(
                             proj.id,
