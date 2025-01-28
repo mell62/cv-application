@@ -203,7 +203,7 @@ function Experience({ data }) {
                       )}
                     </div>
                     <div className="responsibilities-container">
-                      {exp.responsibilities.split(".").map(
+                      {exp.responsibilities.split(". ").map(
                         (resp) =>
                           resp ? (
                             <div key={exp.id} className="responsibilities-cv">
