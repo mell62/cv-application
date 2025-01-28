@@ -722,7 +722,7 @@ function Project({ onFormSubmit, deleteProj }) {
                         id="project-summary-input"
                         value={proj.projectSummary}
                         className="project-form-input project-summary-input"
-                        maxLength={200}
+                        maxLength={300}
                         rows={5}
                         onChange={(e) =>
                           updateProject(
