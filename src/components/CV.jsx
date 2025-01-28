@@ -139,8 +139,16 @@ function Experience({ data }) {
       months += 12;
     }
 
-    const periodYears = `${years} years`;
-    const periodMonths = `${months} months`;
+    let periodYears = `${years} years`;
+    let periodMonths = `${months} months`;
+
+    if (years <= 1) {
+      periodYears = `${years} year`;
+    }
+
+    if (months <= 1) {
+      periodMonths = `${months} month`;
+    }
 
     if (years === 0) {
       return periodMonths;
