@@ -879,7 +879,7 @@ function Skills({ onFormSubmit, deleteSkill }) {
                       id={`skill-${index + 1}-input`}
                       value={skill.skillName}
                       className="skills-form-input"
-                      maxLength={50}
+                      maxLength={60}
                       onChange={(e) => updateSkill(skill.id, e.target.value)}
                     />
                   </div>
