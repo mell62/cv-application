@@ -502,7 +502,6 @@ h3 {
 .experience-company-details-column {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
 }
 
 .experience-timeline-info-container-cv {
@@ -510,7 +509,6 @@ h3 {
   border-left: 0.1rem solid black;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
 }
 
 .experience-timeline-info-cv {
