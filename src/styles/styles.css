@@ -569,13 +569,9 @@ h3 {
   gap: 0.5rem;
 }
 
-@media (max-width: 1250px) {
+@media (max-width: 1550px) {
   #content {
     flex-wrap: wrap;
-  }
-
-  .form-section {
-    max-width: 100%;
   }
 }
 
