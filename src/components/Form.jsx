@@ -418,7 +418,11 @@ function Experience({ onFormSubmit, deleteExp }) {
         <button
           className="expand-btn"
           onClick={() => {
-            editFlag ? setEditFlag(false) : setEditFlag("overview");
+            editFlag === "overview"
+              ? setEditFlag(false)
+              : editFlag === "individual"
+              ? null
+              : setEditFlag("overview"); //disable expand btn when in indiviual edit mode to prevent empty objects getting created in experience
           }}
         >
           {editFlag ? (
@@ -670,7 +674,11 @@ function Project({ onFormSubmit, deleteProj }) {
         <button
           className="expand-btn"
           onClick={() => {
-            editFlag ? setEditFlag(false) : setEditFlag("overview");
+            editFlag === "overview"
+              ? setEditFlag(false)
+              : editFlag === "individual"
+              ? null
+              : setEditFlag("overview"); //disable expand btn when in indiviual edit mode to prevent empty objects getting created in project
           }}
         >
           {editFlag ? (
